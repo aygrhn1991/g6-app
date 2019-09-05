@@ -1,0 +1,24 @@
+<!-- <ion-header>
+    <ion-toolbar>
+        <ion-title>
+            车辆定位
+        </ion-title>
+    </ion-toolbar>
+</ion-header> -->
+
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Back Button</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div #mapElement class="map"></div>
+    <div class="map-tools">
+        <ion-button [routerLink]="['/tabs/track']">重置定位</ion-button>
+        <ion-button [routerLink]="['/login']">轨迹回放</ion-button>
+    </div>
+</ion-content>
