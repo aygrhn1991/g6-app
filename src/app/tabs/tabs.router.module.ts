@@ -10,10 +10,10 @@ const routes: Routes = [
     component: TabsPage,
     canActivate: [RouterGuard],
     children: [
-      { path: '', redirectTo: '/tabs/home', pathMatch: 'full' },
-      { path: 'location', children: [{ path: '', loadChildren: () => import('../location/location.module').then(m => m.LocationPageModule) }] },
-      { path: 'home', children: [{ path: '', loadChildren: () => import('../home/home.module').then(m => m.HomePageModule) }] },
-      { path: 'user', children: [{ path: '', loadChildren: () => import('../user/user.module').then(m => m.UserPageModule) }] }
+      { path: '', loadChildren: () => import('../home/home.module').then(m => m.HomePageModule)  },
+      { path: 'home', loadChildren: () => import('../home/home.module').then(m => m.HomePageModule) },
+      { path: 'location', loadChildren: () => import('../location/location.module').then(m => m.LocationPageModule) },
+      { path: 'user', loadChildren: () => import('../user/user.module').then(m => m.UserPageModule) }
     ]
   }
 ];

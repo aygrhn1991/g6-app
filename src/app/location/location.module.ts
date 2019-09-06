@@ -6,10 +6,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { LocationPage } from './location.page';
+import { TrackPage } from './track/track.page';
+import { Track2Page } from './track2/track2.page';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'location', pathMatch: 'full' },
-  { path: 'location', component: LocationPage }
+  { path: '', component: LocationPage },
+  { path: 'track', component: TrackPage },
+  { path: 'track2', component: Track2Page }
 ];
 
 @NgModule({
@@ -20,7 +23,9 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [
-    LocationPage    
+    LocationPage,
+    TrackPage,
+    Track2Page
   ]
 })
 export class LocationPageModule { }
