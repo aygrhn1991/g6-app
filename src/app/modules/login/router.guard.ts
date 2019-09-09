@@ -10,7 +10,6 @@ export class RouterGuard implements CanActivate {
   }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {    
     let isLogin = localStorage.getItem('isLogin');
-    console.log(isLogin);
     if (isLogin == null) {
       this.router.navigate(['login']);
       return false;

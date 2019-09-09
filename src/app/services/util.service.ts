@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class HtUtilService {
+@Injectable()
+export class UtilService {
 
   constructor() { }
   //时间日期
@@ -147,7 +145,7 @@ export class HtUtilService {
       ((ipNum >= cBegin) && (ipNum <= cEnd)) ||
       ((ipNum >= dBegin) && (ipNum <= dEnd));
   }
-  _getIpNum(ip) {
+  private _getIpNum(ip) {
     var ipArr = ip.split('.');
     var a = parseInt(ipArr[0]);
     var b = parseInt(ipArr[1]);

@@ -1,6 +1,6 @@
 <ion-header>
     <ion-toolbar color="dark">
-        <ion-title>login</ion-title>
+        <ion-title>登录</ion-title>
     </ion-toolbar>
 </ion-header>
 
@@ -9,25 +9,22 @@
         <ion-row>
             <ion-col size="12">
                 <ion-item>
-                    <ion-icon name="contact"></ion-icon>
-                    <ion-input></ion-input>
-                </ion-item>
-            </ion-col>
-            <ion-col size="12">
-                <ion-item>
-                    <ion-icon name="lock"></ion-icon>
-                    <ion-input></ion-input>
-                </ion-item>
-            </ion-col>
-            <ion-col size="12">
-                <ion-item>
                     <ion-icon name="phone-portrait"></ion-icon>
-                    <ion-input></ion-input>
+                    <ion-input [(ngModel)]="user.phonenumber" placeholder="手机号"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col size="12">
+                <ion-item>
+                    <ion-icon name="unlock"></ion-icon>
+                    <ion-input [(ngModel)]="user.phonecode" placeholder="验证码"></ion-input>
                     <ion-button fill="outline">发送验证码</ion-button>
                 </ion-item>
             </ion-col>
             <ion-col size="12">
                 <ion-button expand="block" (click)="login()">登录</ion-button>
+            </ion-col>
+            <ion-col size="12" style="text-align: center;">
+                <ion-label color="primary" [routerLink]="['/login/register']">注册</ion-label>
             </ion-col>
         </ion-row>
     </ion-grid>

@@ -9,6 +9,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { UtilService } from './services/util.service';
+import { ToastService } from './services/toast.service';
+import { HttpService } from './services/http.service';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,10 @@ import { AppComponent } from './app.component';
   providers: [
     StatusBar,
     SplashScreen,
+    UtilService,
+    ToastService,
+    HttpService,
+    { provide: 'API_URL', useValue: 'http://94.191.44.140' },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [
