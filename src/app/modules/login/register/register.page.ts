@@ -34,8 +34,7 @@ export class RegisterPage implements OnInit {
     this._phonenumber = this.user.phonenumber;
     this._phonecode = this.util.getIntRandom(1000, 10000);
     this.http.sendPhoneCode(this._phonecode).subscribe(d => {
-      console.log('验证码发送成功');
-      console.log(this._phonecode);
+      this.toast.show('验证码发送成功');
       this.seconds = 5;
       this.counter();
     })

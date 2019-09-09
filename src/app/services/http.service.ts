@@ -22,4 +22,7 @@ export class HttpService {
     unBindVin(vin:string){
         return this.http.get(this.apiUrl + '/api/list_null.json');
     }
+    bindVin(phonenumber:string, vin:string){
+        return this.http.get(this.apiUrl + '/api/result.json');
+    }
 }
