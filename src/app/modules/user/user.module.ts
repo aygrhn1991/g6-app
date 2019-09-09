@@ -6,12 +6,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { UserPage } from './user.page';
+import { InfoPage } from './info/info.page';
+import { BindPage } from './bind/bind.page';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: UserPage
-  }
+  { path: '', component: UserPage },
+  { path: 'info', component: InfoPage },
+  { path: 'bind', component: BindPage }
 ];
 
 @NgModule({
@@ -21,6 +22,10 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [UserPage]
+  declarations: [
+    UserPage,
+    InfoPage,
+    BindPage
+  ]
 })
-export class UserPageModule {}
+export class UserPageModule { }

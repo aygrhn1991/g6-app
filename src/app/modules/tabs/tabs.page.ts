@@ -8,14 +8,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class TabsPage {
 
-  constructor(private http:HttpClient) {
-
-    this.http.get('http://www.tonggeedu.com/test2/data.json').subscribe(d=>{
-      console.log(d);
-    })
-
-
-  }
-
+  constructor(private http: HttpClient) { }
 
 }

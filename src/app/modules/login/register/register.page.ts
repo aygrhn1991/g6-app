@@ -3,7 +3,6 @@ import { User } from 'src/app/models/user.model';
 import { Router } from '@angular/router';
 import { UtilService } from 'src/app/services/util.service';
 import { ToastService } from 'src/app/services/toast.service';
-import { HttpClient } from '@angular/common/http';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
@@ -18,6 +17,7 @@ export class RegisterPage implements OnInit {
   _phonecode: number = null;
   seconds: number = 0;
   secondsMsg: string = '';
+
   constructor(private router: Router,
     private util: UtilService,
     private toast: ToastService,
@@ -28,12 +28,12 @@ export class RegisterPage implements OnInit {
 
   getPhoneCode() {
     if (this.util.isNull(this.user.phonenumber) || this.user.phonenumber.length != 11) {
-      this.toast.presentToast('请填写正确的手机号');
+      this.toast.show('请填写正确的手机号');
       return;
     }
     this._phonenumber = this.user.phonenumber;
     this._phonecode = this.util.getIntRandom(1000, 10000);
-    this.http.sendPhoneCode(this._phonecode).subscribe((d) => {
+    this.http.sendPhoneCode(this._phonecode).subscribe(d => {
       console.log('验证码发送成功');
       console.log(this._phonecode);
       this.seconds = 5;
@@ -42,21 +42,21 @@ export class RegisterPage implements OnInit {
   }
   register() {
     if (this.util.isNull(this.user.phonenumber) || this.user.phonenumber.length != 11) {
-      this.toast.presentToast('请填写正确的手机号');
+      this.toast.show('请填写正确的手机号');
       return;
     }
     if (this.util.isNull(this.user.phonecode) || this.user.phonecode.toString().length != 4) {
-      this.toast.presentToast('请填写正确的验证码');
+      this.toast.show('请填写正确的验证码');
       return;
     }
     if (this._phonenumber == this.user.phonenumber && this._phonecode == this.user.phonecode) {
-      this.http.register().subscribe((d) => {
-        this.toast.presentToast('注册成功');
-        localStorage.setItem('isLogin', new Date().getTime().toString());
+      this.http.register().subscribe(d => {
+        this.toast.show('注册成功');
+        localStorage.setItem('user', JSON.stringify(this.user));
         this.router.navigate(['/tabs/user']);
       })
     } else {
-      this.toast.presentToast('验证码错误');
+      this.toast.show('验证码错误');
     }
   }
   counter() {

@@ -1,9 +1,37 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>user</ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="dark">
+        <ion-title>个人中心</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="12">
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <img class="head" src="../../../assets/head.png">
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h2 [routerLink]="['/tabs/user/info']">{{user.user.phonenumber}}
+                            <ion-icon name="settings"></ion-icon>
+                        </h2>
+                        <p (click)="openVinList()">{{user.user.vin}}
+                            <ion-icon name="arrow-dropdown"></ion-icon>
+                        </p>
+                    </ion-label>
+                </ion-item>
+            </ion-col>
+            <ion-col size="12">
+                <ion-button expand="block" color="primary" [routerLink]="['/tabs/user/bind']">绑定车辆</ion-button>
+            </ion-col>
+            <ion-col size="12">
+                <ion-button expand="block" color="primary" (click)="unBindVin()">解绑当前车辆</ion-button>
+            </ion-col>
+            <ion-col size="12">
+                <ion-button expand="block" color="primary" (click)="logout()">退出登录</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 
 </ion-content>

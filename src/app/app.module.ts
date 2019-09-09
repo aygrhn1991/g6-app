@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { UtilService } from './services/util.service';
 import { ToastService } from './services/toast.service';
 import { HttpService } from './services/http.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { HttpService } from './services/http.service';
     UtilService,
     ToastService,
     HttpService,
+    UserService,
     { provide: 'API_URL', useValue: 'http://94.191.44.140' },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
