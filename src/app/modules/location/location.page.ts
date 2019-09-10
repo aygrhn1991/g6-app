@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 declare var BMap: any;
-declare var BMAP_ANIMATION_BOUNCE: any;
+
 @Component({
   selector: 'app-location',
   templateUrl: './location.page.html',

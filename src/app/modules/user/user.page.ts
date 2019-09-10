@@ -5,7 +5,6 @@ import { UtilService } from 'src/app/services/util.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { HttpService } from 'src/app/services/http.service';
 import { UserService } from 'src/app/services/user.service';
-import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-user',
