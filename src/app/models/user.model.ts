@@ -3,16 +3,16 @@ export class User {
     phonecode: number;
     vin: string;
     vins: Array<string>;
-    info: Info;
+    info: UserInfo;
     constructor() {
         this.phonenumber = null;
         this.phonecode = null;
         this.vin = null;
         this.vins = [];
-        this.info = new Info();
+        this.info = new UserInfo();
     }
 }
-export class Info {
+export class UserInfo {
     name: string;
     phone: string;
     address: string;

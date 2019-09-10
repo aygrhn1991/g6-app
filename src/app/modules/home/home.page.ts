@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Veh } from 'src/app/models/veh.model';
+import { HttpService } from 'src/app/services/http.service';
 
 @Component({
   selector: 'app-home',
@@ -7,8 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  veh: Veh = new Veh();
 
-  ngOnInit() {      }
+  constructor(private http: HttpService) { }
+
+  ngOnInit() {
+    this.http.getVeh().subscribe((d) => {
+      this.veh = new Veh();
+    })
+  }
 
 }

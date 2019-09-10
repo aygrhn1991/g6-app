@@ -31,4 +31,7 @@ export class HttpService {
     updateUserInfo(){
         return this.http.get(this.apiUrl + '/api/result.json');
     }
+    getVeh(){
+        return this.http.get(this.apiUrl + '/api/result.json');
+    }
 }
