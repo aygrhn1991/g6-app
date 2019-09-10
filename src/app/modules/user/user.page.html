@@ -13,14 +13,16 @@
                         <img class="head" src="../../../assets/head.png">
                     </ion-thumbnail>
                     <ion-label>
-                        <h2 [routerLink]="['/tabs/user/info']">{{user.user.phonenumber}}
-                            <ion-icon name="settings"></ion-icon>
-                        </h2>
-                        <p (click)="openVinList()">{{user.user.vin}}
-                            <ion-icon name="arrow-dropdown"></ion-icon>
-                        </p>
+                        <h2>{{userService.user.phonenumber}}</h2>
+                        <p>{{userService.user.vin}}</p>
                     </ion-label>
                 </ion-item>
+            </ion-col>
+            <ion-col size="12">
+                <ion-button expand="block" color="primary" [routerLink]="['/tabs/user/info']">个人信息完善</ion-button>
+            </ion-col>
+            <ion-col size="12">
+                <ion-button expand="block" color="primary" (click)="openVinList()">切换绑定车辆</ion-button>
             </ion-col>
             <ion-col size="12">
                 <ion-button expand="block" color="primary" [routerLink]="['/tabs/user/bind']">绑定车辆</ion-button>

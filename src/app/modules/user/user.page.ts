@@ -19,38 +19,37 @@ export class UserPage implements OnInit {
     private util: UtilService,
     private toast: ToastService,
     private http: HttpService,
-    private user: UserService) { }
+    private userService: UserService) { }
 
   ngOnInit() {
-    this.getUserVins();
-  }
-  getUserVins() {
-    this.http.getUserVins(this.user.user.phonenumber).subscribe((d: Array<any>) => {
-      if (d.length != 0) {
-        Object.assign(this.user.user, { vin: d[0], vins: d });
-      } else {
-        Object.assign(this.user.user, { vin: null, vins: [] });
-      }
-      this.user.updateUser();
-    })
   }
   unBindVin(){
-    this.http.unBindVin(this.user.user.vin).subscribe((d: Array<any>) => {
+    this.http.unBindVin(this.userService.user.vin).subscribe((d: Array<any>) => {
       if (d.length != 0) {
-        Object.assign(this.user.user, { vin: d[0], vins: d });
+        Object.assign(this.userService.user, { vin: d[0], vins: d });
       } else {
-        Object.assign(this.user.user, { vin: null, vins: [] });
+        Object.assign(this.userService.user, { vin: null, vins: [] });
       }
-      this.user.updateUser();
+      this.userService.updateUser();
+    })
+  }
+  bindVin(){
+    this.http.bindVin(this.userService.user.vin,this.userService.user.phonenumber).subscribe((d: Array<any>) => {
+      if (d.length != 0) {
+        Object.assign(this.userService.user, { vin: d[0], vins: d });
+      } else {
+        Object.assign(this.userService.user, { vin: null, vins: [] });
+      }
+      this.userService.updateUser();
     })
   }
   async openVinList() {
-    let vinList = this.user.user.vins.map(x => {
+    let vinList = this.userService.user.vins.map(x => {
       return {
         text: x,
         handler: () => {
-          this.user.user.vin = x;
-          this.user.updateUser();
+          this.userService.user.vin = x;
+          this.userService.updateUser();
         }
       }
     });

@@ -25,4 +25,10 @@ export class HttpService {
     bindVin(phonenumber:string, vin:string){
         return this.http.get(this.apiUrl + '/api/result.json');
     }
+    getUserInfo(){
+        return this.http.get(this.apiUrl + '/api/result.json');
+    }
+    updateUserInfo(){
+        return this.http.get(this.apiUrl + '/api/result.json');
+    }
 }

@@ -18,7 +18,7 @@ export class BindPage implements OnInit {
     private util: UtilService,
     private toast: ToastService,
     private http: HttpService,
-    private user: UserService) { }
+    private userService: UserService) { }
 
   ngOnInit() {
   }
@@ -28,9 +28,17 @@ export class BindPage implements OnInit {
       this.toast.show('请填写正确的VIN');
       return;
     }
-    this.http.bindVin(this.user.user.phonenumber, this.vin).subscribe(d => {
+    this.http.bindVin(this.userService.user.phonenumber, this.vin).subscribe(d => {
       this.toast.show('车辆绑定成功');
-      this.router.navigate(['/tabs/user']);
+      this.http.getUserVins(this.userService.user.phonenumber).subscribe((d: Array<any>) => {
+        if (d.length != 0) {
+          Object.assign(this.userService.user, { vin: d[0], vins: d });
+        } else {
+          Object.assign(this.userService.user, { vin: null, vins: [] });
+        }
+        this.userService.updateUser();
+        this.router.navigate(['/tabs/user']);
+      })
     })
   }
 

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UtilService } from 'src/app/services/util.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { HttpService } from 'src/app/services/http.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class RegisterPage implements OnInit {
 
-  user: User = new User();
+  userModel: User = new User();
   _phonenumber: string = null;
   _phonecode: number = null;
   seconds: number = 0;
@@ -21,17 +22,18 @@ export class RegisterPage implements OnInit {
   constructor(private router: Router,
     private util: UtilService,
     private toast: ToastService,
-    private http: HttpService) { }
+    private http: HttpService,
+    private userService: UserService) { }
 
   ngOnInit() {
   }
 
   getPhoneCode() {
-    if (this.util.isNull(this.user.phonenumber) || this.user.phonenumber.length != 11) {
+    if (this.util.isNull(this.userModel.phonenumber) || this.userModel.phonenumber.length != 11) {
       this.toast.show('请填写正确的手机号');
       return;
     }
-    this._phonenumber = this.user.phonenumber;
+    this._phonenumber = this.userModel.phonenumber;
     this._phonecode = this.util.getIntRandom(1000, 10000);
     this.http.sendPhoneCode(this._phonecode).subscribe(d => {
       this.toast.show('验证码发送成功');
@@ -40,18 +42,19 @@ export class RegisterPage implements OnInit {
     })
   }
   register() {
-    if (this.util.isNull(this.user.phonenumber) || this.user.phonenumber.length != 11) {
+    if (this.util.isNull(this.userModel.phonenumber) || this.userModel.phonenumber.length != 11) {
       this.toast.show('请填写正确的手机号');
       return;
     }
-    if (this.util.isNull(this.user.phonecode) || this.user.phonecode.toString().length != 4) {
+    if (this.util.isNull(this.userModel.phonecode) || this.userModel.phonecode.toString().length != 4) {
       this.toast.show('请填写正确的验证码');
       return;
     }
-    if (this._phonenumber == this.user.phonenumber && this._phonecode == this.user.phonecode) {
+    if (this._phonenumber == this.userModel.phonenumber && this._phonecode == this.userModel.phonecode) {
       this.http.register().subscribe(d => {
         this.toast.show('注册成功');
-        localStorage.setItem('user', JSON.stringify(this.user));
+        this.userService.user = this.userModel;
+        this.userService.updateUser();
         this.router.navigate(['/tabs/user']);
       })
     } else {
