@@ -34,4 +34,7 @@ export class HttpService {
     getVeh(){
         return this.http.get(this.apiUrl + '/api/result.json');
     }
+    getOnlineLog(){
+        return this.http.get(this.apiUrl + '/api/list.json');
+    }
 }
