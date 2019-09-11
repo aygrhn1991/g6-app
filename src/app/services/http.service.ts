@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 export class HttpService {
 
     constructor(@Inject('API_URL') private apiUrl,
-        private http: HttpClient) { }    
+        private http: HttpClient) { }
 
     sendPhoneCode(code: number) {
         return this.http.get(this.apiUrl + '/api/result.json');
@@ -13,28 +13,28 @@ export class HttpService {
     register() {
         return this.http.get(this.apiUrl + '/api/result.json');
     }
-    login(){
+    login() {
         return this.http.get(this.apiUrl + '/api/result.json');
     }
-    getUserVins(phonenumber:string){
+    getUserVins(phonenumber: string) {
         return this.http.get(this.apiUrl + '/api/list_string.json');
     }
-    unBindVin(vin:string){
+    unBindVin(vin: string) {
         return this.http.get(this.apiUrl + '/api/list_null.json');
     }
-    bindVin(phonenumber:string, vin:string){
+    bindVin(phonenumber: string, vin: string) {
         return this.http.get(this.apiUrl + '/api/result.json');
     }
-    getUserInfo(){
+    getUserInfo() {
         return this.http.get(this.apiUrl + '/api/result.json');
     }
-    updateUserInfo(){
+    updateUserInfo() {
         return this.http.get(this.apiUrl + '/api/result.json');
     }
-    getVeh(){
+    getVeh() {
         return this.http.get(this.apiUrl + '/api/result.json');
     }
-    getOnlineLog(){
-        return this.http.get(this.apiUrl + '/api/list.json');
+    getCustomData(url: string) {
+        return this.http.get(this.apiUrl + url);
     }
 }

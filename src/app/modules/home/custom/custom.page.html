@@ -3,7 +3,7 @@
         <ion-buttons slot="start">
             <ion-back-button text=""></ion-back-button>
         </ion-buttons>
-        <ion-title>登录日志</ion-title>
+        <ion-title>{{pageModel.title}}</ion-title>
     </ion-toolbar>
 </ion-header>
 
@@ -26,25 +26,31 @@
                 <ion-button expand="block" (click)="search()">查询</ion-button>
             </ion-col>
             <ion-col size="12">
+                <div #chartElement style="width: 100%;height:200px;"></div>
+            </ion-col>
+            <ion-col size="12" style="text-align: center;">
+                <ion-note>{{pageModel.total}}</ion-note>
+            </ion-col>
+            <ion-col size="12" class="list-scroll">
                 <ion-list>
-                    <ion-list-header>
-                        <ion-label>Items</ion-label>
-                    </ion-list-header>
+                    <ion-item>
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col size="6">上线日期</ion-col>
+                                <ion-col size="6">上线时长</ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-item>
                     <ion-item *ngFor="let d of dataList">
-                        <ion-label>{{d.name}}</ion-label>
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col size="6">{{d.date}}</ion-col>
+                                <ion-col size="6">{{d.duration}}</ion-col>
+                            </ion-row>
+                        </ion-grid>
                     </ion-item>
                 </ion-list>
             </ion-col>
-
-
         </ion-row>
     </ion-grid>
-
-
-
-
-
-
-
-
 </ion-content>

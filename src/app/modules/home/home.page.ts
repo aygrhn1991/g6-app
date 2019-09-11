@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Veh } from 'src/app/models/veh.model';
 import { HttpService } from 'src/app/services/http.service';
+import { CustomType } from 'src/app/enums/custom-type.enum';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,7 @@ import { HttpService } from 'src/app/services/http.service';
 export class HomePage implements OnInit {
 
   veh: Veh = new Veh();
+  customType: any = CustomType;
 
   constructor(private http: HttpService) { }
 

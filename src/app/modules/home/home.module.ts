@@ -6,11 +6,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { HomePage } from './home.page';
-import { OnlinelogPage } from './onlinelog/onlinelog.page';
+import { CustomPage } from './custom/custom.page';
 
 const routes: Routes = [
   { path: '', component: HomePage },
-  { path: 'onlinelog', component: OnlinelogPage },
+  { path: 'custom/:type', component: CustomPage },
 ];
 
 @NgModule({
@@ -22,7 +22,7 @@ const routes: Routes = [
   ],
   declarations: [
     HomePage,
-    OnlinelogPage
+    CustomPage
   ]
 })
 export class HomePageModule { }

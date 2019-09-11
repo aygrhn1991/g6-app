@@ -31,3 +31,8 @@
 .head {
     border-radius: 100px;
 }
+
+.list-scroll {
+    max-height: 300px;
+    overflow: auto;
+}
