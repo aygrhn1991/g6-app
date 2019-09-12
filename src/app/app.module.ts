@@ -34,7 +34,7 @@ import { ChartService } from './services/chart.service';
     HttpService,
     UserService,
     ChartService,
-    { provide: 'API_URL', useValue: 'http://94.191.44.140' },
+    { provide: 'API_URL', useValue: 'http://localhost:8080' },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [

@@ -7,14 +7,14 @@ export class HttpService {
     constructor(@Inject('API_URL') private apiUrl,
         private http: HttpClient) { }
 
-    sendPhoneCode(code: number) {
-        return this.http.get(this.apiUrl + '/api/result.json');
+    sendPhoneCode(phone: string, code: number) {
+        return this.http.get(this.apiUrl + '/g6/auth/sendPhoneCode/' + phone + '/' + code);
     }
-    register() {
-        return this.http.get(this.apiUrl + '/api/result.json');
+    register(phone: string) {
+        return this.http.get(this.apiUrl + '/g6/auth/register/' + phone);
     }
-    login() {
-        return this.http.get(this.apiUrl + '/api/result.json');
+    login(phone: string) {
+        return this.http.get(this.apiUrl + '/g6/auth/login/' + phone);
     }
     getUserVins(phonenumber: string) {
         return this.http.get(this.apiUrl + '/api/list_string.json');
