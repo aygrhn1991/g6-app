@@ -81,6 +81,11 @@ export class UtilService {
   getDayEnd(date: Date): Date {
     return new Date((date.getFullYear()) + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + '23:59:59');
   };
+  getDiffDays(start: Date, end: Date): number {
+    var diff = Math.abs(this.getDayStart(start).getTime() - this.getDayStart(end).getTime());
+    var days = diff / (1000 * 60 * 60 * 24);
+    return days;
+  }
   secondToHHMMSS(seconds: number): string {
     var temp = 0;
     var str = '';
@@ -175,8 +180,8 @@ export class UtilService {
     return (number & position) === position ? 1 : 0;
   };
   binaryDecode2(number, p): any {
-    let oc = 1;
-    let c = oc << (p - 1);
+    var oc = 1;
+    var c = oc << (p - 1);
     return (c & number) != 0 ? 1 : 0;
   }
 
