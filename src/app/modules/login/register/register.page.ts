@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/user.model';
+import { User, Account } from 'src/app/models/user.model';
 import { Router } from '@angular/router';
 import { UtilService } from 'src/app/services/util.service';
 import { ToastService } from 'src/app/services/toast.service';
@@ -14,7 +14,7 @@ import { Result } from 'src/app/models/result.model';
 })
 export class RegisterPage implements OnInit {
 
-  userModel: User = new User();
+  userAccount: Account = new Account();
   _phonenumber: string = null;
   _phonecode: number = null;
   seconds: number = 0;
@@ -30,11 +30,11 @@ export class RegisterPage implements OnInit {
   }
 
   sendPhoneCode() {
-    if (this.util.isNull(this.userModel.phonenumber) || this.userModel.phonenumber.length != 11) {
+    if (this.util.isNull(this.userAccount.phone) || this.userAccount.phone.length != 11) {
       this.toast.show('请填写正确的手机号');
       return;
     }
-    this._phonenumber = this.userModel.phonenumber;
+    this._phonenumber = this.userAccount.phone;
     this._phonecode = this.util.getIntRandom(1000, 10000);
     this.http.sendPhoneCode(this._phonenumber, this._phonecode).subscribe((d: Result) => {
       this.toast.show(d.message);
@@ -45,19 +45,19 @@ export class RegisterPage implements OnInit {
     })
   }
   register() {
-    if (this.util.isNull(this.userModel.phonenumber) || this.userModel.phonenumber.length != 11) {
+    if (this.util.isNull(this.userAccount.phone) || this.userAccount.phone.length != 11) {
       this.toast.show('请填写正确的手机号');
       return;
     }
-    if (this.util.isNull(this.userModel.phonecode) || this.userModel.phonecode.toString().length != 4) {
+    if (this.util.isNull(this.userAccount.code) || this.userAccount.code.toString().length != 4) {
       this.toast.show('请填写正确的验证码');
       return;
     }
-    if (this._phonenumber == this.userModel.phonenumber && this._phonecode == this.userModel.phonecode) {
-      this.http.register(this.userModel.phonenumber).subscribe((d: Result) => {
+    if (this._phonenumber == this.userAccount.phone && this._phonecode == this.userAccount.code) {
+      this.http.register(this.userAccount.phone).subscribe((d: Result) => {
         this.toast.show(d.message);
         if (d.success) {
-          this.userService.user = this.userModel;
+          this.userService.user.account = this.userAccount;
           this.userService.updateUser();
           this.router.navigate(['/tabs/user']);
         }

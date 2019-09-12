@@ -1,24 +1,32 @@
+import { VehInfo, Veh } from './veh.model';
+
 export class User {
-    phonenumber: string;
-    phonecode: number;
-    vin: string;
-    vins: Array<string>;
+    account: Account;
+    vin: VehInfo;
+    vins: Array<VehInfo>;
     info: UserInfo;
     constructor() {
-        this.phonenumber = null;
-        this.phonecode = null;
-        this.vin = null;
-        this.vins = [];
+        this.account = new Account();
+        this.vin = new VehInfo();
+        this.vins = new Array<VehInfo>();
         this.info = new UserInfo();
     }
 }
+export class Account {
+    phone: string;
+    code: number;
+    constructor() {
+        this.phone = null;
+        this.code = null;
+    }
+}
 export class UserInfo {
+    id: number;
     name: string;
     phone: string;
-    address: string;
     constructor() {
+        this.id = null;
         this.name = null;
         this.phone = null;
-        this.address = null;
     }
 }

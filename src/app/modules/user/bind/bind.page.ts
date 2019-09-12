@@ -30,7 +30,7 @@ export class BindPage implements OnInit {
     }
     this.http.bindVin(this.userService.user.phonenumber, this.vin).subscribe(d => {
       this.toast.show('车辆绑定成功');
-      this.http.getUserVins(this.userService.user.phonenumber).subscribe((d: Array<any>) => {
+      this.http.getBindVins(this.userService.user.phonenumber).subscribe((d: Array<any>) => {
         if (d.length != 0) {
           Object.assign(this.userService.user, { vin: d[0], vins: d });
         } else {

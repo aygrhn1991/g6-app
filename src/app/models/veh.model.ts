@@ -9,6 +9,7 @@ export class Veh {
     }
 }
 export class VehInfo {
+    id: number;
     vin: string;
     vehno: string;
     color: string;
@@ -18,6 +19,7 @@ export class VehInfo {
     simcode: string;
     engcode: string;
     constructor() {
+        this.id = null;
         this.vin = null;
         this.vehno = null;
         this.color = null;

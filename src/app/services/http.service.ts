@@ -16,13 +16,13 @@ export class HttpService {
     login(phone: string) {
         return this.http.get(this.apiUrl + '/g6/auth/login/' + phone);
     }
-    getUserVins(phonenumber: string) {
-        return this.http.get(this.apiUrl + '/api/list_string.json');
+    getBindVins(phone: string) {
+        return this.http.get(this.apiUrl + '/g6/auth/getBindVins/'+phone);
     }
     unBindVin(vin: string) {
         return this.http.get(this.apiUrl + '/api/list_null.json');
     }
-    bindVin(phonenumber: string, vin: string) {
+    bindVin(phone: string, vin: string) {
         return this.http.get(this.apiUrl + '/api/result.json');
     }
     getUserInfo() {

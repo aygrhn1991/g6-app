@@ -12,7 +12,7 @@ export class UserService {
         if (userObj != null) {
             this.user = JSON.parse(userObj);
         } else {
-            this.user = null;
+            this.user = new User();
         }
     }
 
