@@ -28,8 +28,8 @@ export class HttpService {
     unBindVin(userid: number, vehid: number) {
         return this.http.get(this.apiUrl + '/g6/auth/unBindVin/' + userid + '/' + vehid);
     }
-    updateUserInfo() {
-        return this.http.get(this.apiUrl + '/api/result.json');
+    updateUserInfo(userid: number, name: string) {
+        return this.http.get(this.apiUrl + '/g6/auth/updateUserInfo/' + userid + '/' + name);
     }
     getVeh() {
         return this.http.get(this.apiUrl + '/api/result.json');
