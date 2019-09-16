@@ -26,6 +26,10 @@ export class BindPage implements OnInit {
   }
 
   bind() {
+    if (this.userService.user.vins.length >= 3) {
+      this.toast.show('一个账号最多可以绑定3个VIN');
+      return;
+    }
     if (this.util.isNull(this.vin) || this.vin.length != 17) {
       this.toast.show('请填写正确的VIN');
       return;
