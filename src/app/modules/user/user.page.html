@@ -13,8 +13,8 @@
                         <img class="head" src="../../../assets/head.png">
                     </ion-thumbnail>
                     <ion-label>
-                        <h2>{{userService.user.phonenumber}}</h2>
-                        <p>{{userService.user.vin}}</p>
+                        <h2>{{userService.user.info.phone}}</h2>
+                        <p>{{userService.user.vin.vin}}</p>
                     </ion-label>
                 </ion-item>
             </ion-col>
@@ -22,13 +22,13 @@
                 <ion-button expand="block" color="primary" [routerLink]="['/tabs/user/info']">个人信息完善</ion-button>
             </ion-col>
             <ion-col size="12">
-                <ion-button expand="block" color="primary" (click)="openVinList()">切换绑定车辆</ion-button>
+                <ion-button expand="block" color="primary" (click)="openVinList()" [disabled]="userService.user.vins.length<=1">切换绑定车辆</ion-button>
             </ion-col>
             <ion-col size="12">
                 <ion-button expand="block" color="primary" [routerLink]="['/tabs/user/bind']">绑定车辆</ion-button>
             </ion-col>
             <ion-col size="12">
-                <ion-button expand="block" color="primary" (click)="unBindVin()">解绑当前车辆</ion-button>
+                <ion-button expand="block" color="primary" (click)="unBindVin()" [disabled]="userService.user.vin.vehno==null">解绑当前车辆</ion-button>
             </ion-col>
             <ion-col size="12">
                 <ion-button expand="block" color="primary" (click)="logout()">退出登录</ion-button>

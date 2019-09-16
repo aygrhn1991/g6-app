@@ -18,6 +18,7 @@ export class UserService {
 
     updateUser() {
         localStorage.setItem('user', JSON.stringify(this.user));
+        console.log('userservice.updateUser', '用户已更新');
     }
 
 

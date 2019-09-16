@@ -9,11 +9,12 @@ import { ToastService } from 'src/app/services/toast.service';
 })
 export class BindGuard implements CanActivate {
   constructor(private router: Router,
-    private user: UserService,
+    private userService: UserService,
     private util: UtilService,
     private toast: ToastService) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (this.util.isNull(this.user.user.vin)) {
+    console.log('bind.guard', this.userService.user);
+    if (this.util.isNull(this.userService.user.vin.id)) {
       this.toast.show('请绑定车辆');
       this.router.navigate(['/tabs/user']);
       return false;

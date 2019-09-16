@@ -4,6 +4,8 @@ import { UtilService } from 'src/app/services/util.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { HttpService } from 'src/app/services/http.service';
 import { UserService } from 'src/app/services/user.service';
+import { Result } from 'src/app/models/result.model';
+import { VehInfo } from 'src/app/models/veh.model';
 
 @Component({
   selector: 'app-bind',
@@ -28,17 +30,24 @@ export class BindPage implements OnInit {
       this.toast.show('请填写正确的VIN');
       return;
     }
-    this.http.bindVin(this.userService.user.phonenumber, this.vin).subscribe(d => {
-      this.toast.show('车辆绑定成功');
-      this.http.getBindVins(this.userService.user.phonenumber).subscribe((d: Array<any>) => {
-        if (d.length != 0) {
-          Object.assign(this.userService.user, { vin: d[0], vins: d });
-        } else {
-          Object.assign(this.userService.user, { vin: null, vins: [] });
-        }
-        this.userService.updateUser();
-        this.router.navigate(['/tabs/user']);
-      })
+    this.http.bindVin(this.userService.user.info.id, this.vin).subscribe((d: Result) => {
+      this.toast.show(d.message);
+      if (d.success) {
+        this.http.getBindVins(this.userService.user.info.id).subscribe((d: Result) => {
+          if (d.success) {
+            this.userService.user.vins = d.data.map(x => {
+              let veh = new VehInfo();
+              veh.id = x.C_ID;
+              veh.vin = x.C_VIN;
+              veh.vehno = x.C_VEHNO;
+              return veh;
+            })
+            this.userService.user.vin = d.data.length != 0 ? this.userService.user.vins[0] : new VehInfo();
+            this.userService.updateUser();
+            this.router.navigate(['/tabs/user']);
+          }
+        })
+      }
     })
   }
 

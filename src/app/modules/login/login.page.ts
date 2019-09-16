@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User, Account } from 'src/app/models/user.model';
+import { User, UserInfo } from 'src/app/models/user.model';
 import { UtilService } from 'src/app/services/util.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { HttpService } from 'src/app/services/http.service';
 import { UserService } from 'src/app/services/user.service';
 import { Result } from 'src/app/models/result.model';
+import { VehInfo } from 'src/app/models/veh.model';
 
 @Component({
   selector: 'app-login',
@@ -14,9 +15,9 @@ import { Result } from 'src/app/models/result.model';
 })
 export class LoginPage implements OnInit {
 
-  userAccount: Account = new Account();
-  _phonenumber: string = null;
-  _phonecode: number = null;
+  userInfo: UserInfo = new UserInfo();
+  _phone: string = null;
+  _code: number = null;
   seconds: number = 0;
   secondsMsg: string = '';
 
@@ -30,49 +31,54 @@ export class LoginPage implements OnInit {
   }
 
   getPhoneCode() {
-    if (this.util.isNull(this.userAccount.phone) || this.userAccount.phone.length != 11) {
+    if (this.util.isNull(this.userInfo.phone) || this.userInfo.phone.length != 11) {
       this.toast.show('请填写正确的手机号');
       return;
     }
-    this._phonenumber = this.userAccount.phone;
-    this._phonecode = this.util.getIntRandom(1000, 10000);
-    this.http.sendPhoneCode(this._phonenumber, this._phonecode).subscribe(d => {
+    this._phone = this.userInfo.phone;
+    this._code = this.util.getIntRandom(1000, 10000);
+    this.http.sendPhoneCode(this._phone, this._code).subscribe(d => {
       this.toast.show('验证码发送成功');
       this.seconds = 5;
       this.counter();
     })
   }
   login() {
-    if (this.util.isNull(this.userAccount.phone) || this.userAccount.phone.length != 11) {
+    if (this.util.isNull(this.userInfo.phone) || this.userInfo.phone.length != 11) {
       this.toast.show('请填写正确的手机号');
       return;
     }
-    if (this.util.isNull(this.userAccount.code) || this.userAccount.code.toString().length != 4) {
+    if (this.util.isNull(this.userInfo.code) || this.userInfo.code.toString().length != 4) {
       this.toast.show('请填写正确的验证码');
       return;
     }
-    if (this._phonenumber == this.userAccount.phone && this._phonecode == this.userAccount.code) {
-      this.http.login(this.userAccount.phone).subscribe((d: Result) => {
+    if (this._phone == this.userInfo.phone && this._code == this.userInfo.code) {
+      this.http.login(this.userInfo.phone).subscribe((d: Result) => {
         this.toast.show(d.message);
         if (d.success) {
-          this.http.getBindVins(this.userAccount.phone).subscribe((d: Result) => {
+          this.http.getUserInfo(this.userInfo.phone).subscribe((d: Result) => {
             if (d.success) {
-              if (d.data.length != 0) {
-                this.userService.user.vin = d.data.map(x => {
-                  return { aaa: x.c_id, bbb: x.c_vin };
-                })
-              }
+              this.userService.user.info = new UserInfo();
+              this.userService.user.info.id = d.data.C_ID;
+              this.userService.user.info.phone = d.data.C_PHONE;
+              this.userService.user.info.name = d.data.C_NAME;
+              this.userService.updateUser();
+              this.http.getBindVins(this.userService.user.info.id).subscribe((d: Result) => {
+                if (d.success) {
+                  this.userService.user.vins = d.data.map(x => {
+                    let veh = new VehInfo();
+                    veh.id = x.C_ID;
+                    veh.vin = x.C_VIN;
+                    veh.vehno = x.C_VEHNO;
+                    return veh;
+                  })
+                  this.userService.user.vin = d.data.length != 0 ? this.userService.user.vins[0] : new VehInfo();
+                  this.userService.updateUser();
+                  this.router.navigate(['/tabs/home']);
+                }
+              })
             }
-
-            // this.http.getUserInfo().subscribe((d: any) => {
-            //   this.userModel.info.name = 'aaa';
-            //   this.userModel.info.phone = 'bbb';
-            //   this.userModel.info.address = 'ccc';
-            //   this.userService.user = this.userModel;
-            //   this.userService.updateUser();
-            //   this.router.navigate(['/tabs/home']);
-            // });
-          })
+          });
         }
       })
     } else {

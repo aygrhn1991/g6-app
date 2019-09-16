@@ -9,6 +9,7 @@ import echarts from 'echarts';
 import { CustomType } from 'src/app/enums/custom-type.enum';
 import { ChartService } from 'src/app/services/chart.service';
 import { ChartType } from 'src/app/enums/chart-type.enum';
+import { Result } from 'src/app/models/result.model';
 
 @Component({
   selector: 'app-custom',
@@ -87,7 +88,7 @@ export class CustomPage implements OnInit {
   }
 
   search() {
-    this.http.getCustomData(this.pageModel.url).subscribe((d: Array<any>) => {
+    this.http.getCustomData(this.pageModel.url).subscribe((d: Result) => {
       let dataOrg = this.makeData();
       let dateOrg = this.makeDate();
       ///////////////////////////////

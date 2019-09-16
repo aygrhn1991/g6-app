@@ -16,17 +16,17 @@ export class HttpService {
     login(phone: string) {
         return this.http.get(this.apiUrl + '/g6/auth/login/' + phone);
     }
-    getBindVins(phone: string) {
-        return this.http.get(this.apiUrl + '/g6/auth/getBindVins/'+phone);
+    getUserInfo(phone: string) {
+        return this.http.get(this.apiUrl + '/g6/auth/getUserInfo/' + phone);
     }
-    unBindVin(vin: string) {
-        return this.http.get(this.apiUrl + '/api/list_null.json');
+    getBindVins(userid: number) {
+        return this.http.get(this.apiUrl + '/g6/auth/getBindVins/' + userid);
     }
-    bindVin(phone: string, vin: string) {
-        return this.http.get(this.apiUrl + '/api/result.json');
+    bindVin(userid: number, vin: string) {
+        return this.http.get(this.apiUrl + '/g6/auth/bindVin/' + userid + '/' + vin);
     }
-    getUserInfo() {
-        return this.http.get(this.apiUrl + '/api/result.json');
+    unBindVin(userid: number, vehid: number) {
+        return this.http.get(this.apiUrl + '/g6/auth/unBindVin/' + userid + '/' + vehid);
     }
     updateUserInfo() {
         return this.http.get(this.apiUrl + '/api/result.json');

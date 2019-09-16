@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User, Account } from 'src/app/models/user.model';
+import { UserInfo } from 'src/app/models/user.model';
 import { Router } from '@angular/router';
 import { UtilService } from 'src/app/services/util.service';
 import { ToastService } from 'src/app/services/toast.service';
@@ -14,9 +14,9 @@ import { Result } from 'src/app/models/result.model';
 })
 export class RegisterPage implements OnInit {
 
-  userAccount: Account = new Account();
-  _phonenumber: string = null;
-  _phonecode: number = null;
+  userInfo: UserInfo = new UserInfo();
+  _phone: string = null;
+  _code: number = null;
   seconds: number = 0;
   secondsMsg: string = '';
 
@@ -30,13 +30,13 @@ export class RegisterPage implements OnInit {
   }
 
   sendPhoneCode() {
-    if (this.util.isNull(this.userAccount.phone) || this.userAccount.phone.length != 11) {
+    if (this.util.isNull(this.userInfo.phone) || this.userInfo.phone.length != 11) {
       this.toast.show('请填写正确的手机号');
       return;
     }
-    this._phonenumber = this.userAccount.phone;
-    this._phonecode = this.util.getIntRandom(1000, 10000);
-    this.http.sendPhoneCode(this._phonenumber, this._phonecode).subscribe((d: Result) => {
+    this._phone = this.userInfo.phone;
+    this._code = this.util.getIntRandom(1000, 10000);
+    this.http.sendPhoneCode(this._phone, this._code).subscribe((d: Result) => {
       this.toast.show(d.message);
       if (d.success) {
         this.seconds = 5;
@@ -45,21 +45,19 @@ export class RegisterPage implements OnInit {
     })
   }
   register() {
-    if (this.util.isNull(this.userAccount.phone) || this.userAccount.phone.length != 11) {
+    if (this.util.isNull(this.userInfo.phone) || this.userInfo.phone.length != 11) {
       this.toast.show('请填写正确的手机号');
       return;
     }
-    if (this.util.isNull(this.userAccount.code) || this.userAccount.code.toString().length != 4) {
+    if (this.util.isNull(this.userInfo.code) || this.userInfo.code.toString().length != 4) {
       this.toast.show('请填写正确的验证码');
       return;
     }
-    if (this._phonenumber == this.userAccount.phone && this._phonecode == this.userAccount.code) {
-      this.http.register(this.userAccount.phone).subscribe((d: Result) => {
+    if (this._phone == this.userInfo.phone && this._code == this.userInfo.code) {
+      this.http.register(this.userInfo.phone).subscribe((d: Result) => {
         this.toast.show(d.message);
         if (d.success) {
-          this.userService.user.account = this.userAccount;
-          this.userService.updateUser();
-          this.router.navigate(['/tabs/user']);
+          this.router.navigate(['/login']);
         }
       })
     } else {
