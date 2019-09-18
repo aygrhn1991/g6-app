@@ -13,13 +13,13 @@
             <ion-col size="12">
                 <ion-item>
                     <ion-note slot="start">开始时间</ion-note>
-                    <ion-datetime [displayFormat]="searchModel.dateFormat" [min]="searchModel.minDate" [max]="searchModel.maxDate" [(ngModel)]="searchModel.startDate"></ion-datetime>
+                    <ion-datetime [displayFormat]="searchModel.dateFormat" [min]="searchModel.minDate" [max]="searchModel.maxDate" [(ngModel)]="searchModel.startDate" cancelText="取消" doneText="确定"></ion-datetime>
                 </ion-item>
             </ion-col>
             <ion-col size="12">
                 <ion-item>
                     <ion-note slot="start">截止时间</ion-note>
-                    <ion-datetime [displayFormat]="searchModel.dateFormat" [min]="searchModel.minDate" [max]="searchModel.maxDate" [(ngModel)]="searchModel.endDate"></ion-datetime>
+                    <ion-datetime [displayFormat]="searchModel.dateFormat" [min]="searchModel.minDate" [max]="searchModel.maxDate" [(ngModel)]="searchModel.endDate" cancelText="取消" doneText="确定"></ion-datetime>
                 </ion-item>
             </ion-col>
             <ion-col size="12">
