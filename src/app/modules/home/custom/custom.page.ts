@@ -84,41 +84,43 @@ export class CustomPage implements OnInit {
       default:
         break;
     }
-    this.search();
+    setTimeout(()=>{
+      this.search();
+    },1000);
   }
 
   search() {
-    this.http.getCustomData(this.pageModel.url).subscribe((d: Result) => {
-      let dataOrg = this.makeData();
-      let dateOrg = this.makeDate();
-      ///////////////////////////////
-      this.dataList = [];
-      dateOrg.forEach(e => {
-        let temp = dataOrg.find(f => {
-          return this.util.getDayStart(this.util.stringToDate(f.date)).getTime() == this.util.getDayStart(e).getTime();
-        })
-        if (!this.util.isNull(temp)) {
-          this.dataList.push({ date: temp.date, data: temp.data });
-        } else {
-          this.dataList.push({ date: this.util.dateToYYMMDD(e), data: 0 });
-        }
+    //this.http.getCustomData(this.pageModel.url).subscribe((d: Result) => {
+    let dataOrg = this.makeData();
+    let dateOrg = this.makeDate();
+    ///////////////////////////////
+    this.dataList = [];
+    dateOrg.forEach(e => {
+      let temp = dataOrg.find(f => {
+        return this.util.getDayStart(this.util.stringToDate(f.date)).getTime() == this.util.getDayStart(e).getTime();
       })
-      ///////////////////////////////
-      let sum = 0;
-      this.dataList.forEach(e => {
-        sum += e.data;
-      })
-      this.pageModel.statistic = this.pageModel.total + sum + this.pageModel.unit;
-      let chart = echarts.init(this.chartElement.nativeElement);
-      let xData = this.dataList.map(x => {
-        return x.date;
-      })
-      let yData = this.dataList.map(x => {
-        return x.data;
-      })
-      let option = this.chartService.makeLineOrBarChartOption(this.pageModel.title, this.pageModel.chartType, xData, yData);
-      chart.setOption(option);
+      if (!this.util.isNull(temp)) {
+        this.dataList.push({ date: temp.date, data: temp.data });
+      } else {
+        this.dataList.push({ date: this.util.dateToYYMMDD(e), data: 0 });
+      }
     })
+    ///////////////////////////////
+    let sum = 0;
+    this.dataList.forEach(e => {
+      sum += e.data;
+    })
+    this.pageModel.statistic = this.pageModel.total + sum + this.pageModel.unit;
+    let chart = echarts.init(this.chartElement.nativeElement);
+    let xData = this.dataList.map(x => {
+      return x.date;
+    })
+    let yData = this.dataList.map(x => {
+      return x.data;
+    })
+    let option = this.chartService.makeLineOrBarChartOption(this.pageModel.title, this.pageModel.chartType, xData, yData);
+    chart.setOption(option);
+    //})
   }
 
   makeData() {

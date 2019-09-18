@@ -34,7 +34,8 @@ import { ChartService } from './services/chart.service';
     HttpService,
     UserService,
     ChartService,
-    { provide: 'API_URL', useValue: 'http://localhost:8080' },
+    //{ provide: 'API_URL', useValue: 'http://www.fenglingtime.com/appserver' },
+    { provide: 'API_URL', useValue: 'http://localhost:8080/appserver' },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [
