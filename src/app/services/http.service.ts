@@ -38,6 +38,6 @@ export class HttpService {
         return this.http.get(this.apiUrl + url);
     }
     getTrackPoints(){
-        return this.http.get('../../assets/points2.json');
+        return this.http.get('../../assets/points.json');
     }
 }
