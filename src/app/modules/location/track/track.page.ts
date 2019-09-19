@@ -68,11 +68,13 @@ export class TrackPage implements OnInit {
   start() {
     this.lushu.start();
     let timer = setInterval(() => {
+      console.log('out', timer);
       let li = this.lushu.i;
       let pc = this.points.length;
       console.log((li / pc).toFixed(2));
       if (li == (pc - 1)) {
         clearInterval(timer);
+        console.log('stop', timer);
       }
     }, 1000)
 
