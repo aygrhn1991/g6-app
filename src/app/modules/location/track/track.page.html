@@ -3,13 +3,18 @@
         <ion-buttons slot="start">
             <ion-back-button text=""></ion-back-button>
         </ion-buttons>
-        <ion-title>track</ion-title>
+        <ion-title>轨迹回放</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <div class="map-tools">
-        <ion-button [routerLink]="['/tabs/location/track2']">track2</ion-button>
-        <ion-button [routerLink]="['/login']">轨迹回放</ion-button>
-    </div>
+    <div #mapElement class="map"></div>
+    <div id="result"></div>
+    <ion-button (click)="start()">开始</ion-button>
+    <ion-button (click)="stop()">停止</ion-button>
+    <ion-button (click)="pause()">暂停</ion-button>
+    <ion-button (click)="hide()">隐藏信息窗口</ion-button>
+    <ion-button (click)="show()">展示信息窗口</ion-button>
+    <ion-button (click)="speed1()">speed1</ion-button>
+    <ion-button (click)="speed2()">speed2</ion-button>
 </ion-content>

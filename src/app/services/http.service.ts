@@ -37,4 +37,7 @@ export class HttpService {
     getCustomData(url: string) {
         return this.http.get(this.apiUrl + url);
     }
+    getTrackPoints(){
+        return this.http.get('../../assets/points2.json');
+    }
 }

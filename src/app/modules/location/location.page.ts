@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 declare var BMap: any;
 
 @Component({
@@ -11,8 +10,8 @@ export class LocationPage implements OnInit {
 
   @ViewChild('mapElement', null) mapElement: ElementRef;
 
-  constructor(private http: HttpClient) { }
-  ngOnInit(): void {
+  constructor() { }
+  ngOnInit() {
     setTimeout(()=>{
       var map = new BMap.Map(this.mapElement.nativeElement);
       var point = new BMap.Point(116.3512761582, 39.9154689363);
