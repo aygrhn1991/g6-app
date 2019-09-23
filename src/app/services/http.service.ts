@@ -1,5 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { CustomType } from '../enums/custom-type.enum';
 
 @Injectable()
 export class HttpService {
@@ -31,13 +32,13 @@ export class HttpService {
     updateUserInfo(userid: number, name: string) {
         return this.http.get(this.apiUrl + '/g6/auth/updateUserInfo/' + userid + '/' + name);
     }
-    getVeh() {
-        return this.http.get(this.apiUrl + '/api/result.json');
+    getVeh(vehid: number) {
+        return this.http.get(this.apiUrl + '/g6/home/getVeh/' + vehid);
     }
-    getCustomData(url: string) {
-        return this.http.get(this.apiUrl + url);
+    getCustomData(vehid: number, type: CustomType, dateStart: number, dateEnd: number) {
+        return this.http.get(this.apiUrl + '/g6/home/getCustomData/' + vehid + '/' + type + '/' + dateStart + '/' + dateEnd);
     }
-    getTrackPoints(){
+    getTrackPoints() {
         return this.http.get('../../assets/points.json');
     }
 }

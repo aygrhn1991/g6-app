@@ -39,16 +39,16 @@ export class VehCondition {
     }
 }
 export class VehStatistic {
-    duration: number;
-    mileage: number;
+    days: number;
+    mile: number;
     nox: number;
-    consumption: number;
+    oil: number;
     faults: number;
     constructor() {
-        this.duration = null;
-        this.mileage = null;
+        this.days = null;
+        this.mile = null;
         this.nox = null;
-        this.consumption = null;
+        this.oil = null;
         this.faults = null;
     }
 }

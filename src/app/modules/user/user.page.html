@@ -28,7 +28,7 @@
                 <ion-button expand="block" color="primary" [routerLink]="['/tabs/user/bind']">绑定车辆</ion-button>
             </ion-col>
             <ion-col size="12">
-                <ion-button expand="block" color="primary" (click)="unBindVin()" [disabled]="userService.user.vin.vehno==null">解绑当前车辆</ion-button>
+                <ion-button expand="block" color="primary" (click)="unBindVin()" [disabled]="userService.user.vin.id==null">解绑当前车辆</ion-button>
             </ion-col>
             <ion-col size="12">
                 <ion-button expand="block" color="primary" (click)="logout()">退出登录</ion-button>

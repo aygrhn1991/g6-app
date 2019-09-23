@@ -1,7 +1,7 @@
 export enum CustomType {
-    duration,
-    mileage,
-    consumption,
+    days,
+    mile,
+    oil,
     nox,
     faults
 }

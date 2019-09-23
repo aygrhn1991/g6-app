@@ -1,6 +1,6 @@
 <ion-header>
     <ion-toolbar color="dark">
-        <ion-title>home</ion-title>
+        <ion-title>主页</ion-title>
     </ion-toolbar>
 </ion-header>
 
@@ -16,25 +16,25 @@
                         VIN号码：{{veh.info.vin}}
                     </ion-col>
                     <ion-col size="12">
-                        车牌号码：{{veh.info.vin}}
+                        车牌号码：{{veh.info.vehno}}
                     </ion-col>
                     <ion-col size="12">
-                        车牌颜色：{{veh.info.vin}}
+                        车牌颜色：{{veh.info.color}}
                     </ion-col>
                     <ion-col size="12">
-                        车身颜色：{{veh.info.vin}}
+                        车身颜色：{{veh.info.bodycolor}}
                     </ion-col>
                     <ion-col size="12">
-                        终端编号：{{veh.info.vin}}
+                        终端编号：{{veh.info.dtucode}}
                     </ion-col>
                     <ion-col size="12">
-                        SIM卡号：{{veh.info.vin}}
+                        SIM卡号：{{veh.info.simcode}}
                     </ion-col>
                     <ion-col size="12">
-                        发动机编号：{{veh.info.vin}}
+                        发动机编号：{{veh.info.engcode}}
                     </ion-col>
                     <ion-col size="12">
-                        车辆型号：{{veh.info.vin}}
+                        车辆型号：{{veh.info.vehmodel}}
                     </ion-col>
                 </ion-row>
             </ion-grid>
@@ -64,20 +64,20 @@
         <ion-card-content>
             <ion-grid>
                 <ion-row>
-                    <ion-col size="12" [routerLink]="['/tabs/home/custom',customType.duration]">
-                        车辆行驶总时长：{{veh.statistic.duration}}>>
+                    <ion-col size="12" [routerLink]="['/tabs/home/custom',customType.days]">
+                        车辆上线天数：{{veh.statistic.days}}天
                     </ion-col>
-                    <ion-col size="12" [routerLink]="['/tabs/home/custom',customType.mileage]">
-                        车辆行驶总里程：{{veh.statistic.mileage}}>>
+                    <ion-col size="12" [routerLink]="['/tabs/home/custom',customType.mile]">
+                        车辆行驶总里程：{{veh.statistic.mile}}km
                     </ion-col>
-                    <ion-col size="12" [routerLink]="['/tabs/home/custom',customType.consumption]">
-                        总油耗：{{veh.statistic.consumption}}>>
+                    <ion-col size="12" [routerLink]="['/tabs/home/custom',customType.oil]">
+                        总油耗：{{veh.statistic.oil}}L
                     </ion-col>
                     <ion-col size="12" [routerLink]="['/tabs/home/custom',customType.nox]">
-                        总NOx排放量：{{veh.statistic.nox}}>>
+                        总NOx排放量：{{veh.statistic.nox}}L
                     </ion-col>
                     <ion-col size="12" [routerLink]="['/tabs/home/custom',customType.faults]">
-                        总故障数：{{veh.statistic.faults}}>>
+                        总故障数：{{veh.statistic.faults}}次
                     </ion-col>
                 </ion-row>
             </ion-grid>
