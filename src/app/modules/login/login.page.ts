@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User, UserInfo } from 'src/app/models/user.model';
+import { UserInfo } from 'src/app/models/user.model';
 import { UtilService } from 'src/app/services/util.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { HttpService } from 'src/app/services/http.service';
@@ -37,10 +37,12 @@ export class LoginPage implements OnInit {
     }
     this._phone = this.userInfo.phone;
     this._code = this.util.getIntRandom(1000, 10000);
-    this.http.sendPhoneCode(this._phone, this._code).subscribe(d => {
-      this.toast.show('验证码发送成功');
-      this.seconds = 5;
-      this.counter();
+    this.http.sendPhoneCode(this._phone, this._code).subscribe((d: Result) => {
+      this.toast.show(d.message);
+      if (d.success) {
+        this.seconds = 5;
+        this.counter();
+      }
     })
   }
   login() {

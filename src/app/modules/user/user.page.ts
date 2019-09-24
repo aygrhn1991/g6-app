@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { UtilService } from 'src/app/services/util.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { HttpService } from 'src/app/services/http.service';
 import { UserService } from 'src/app/services/user.service';
@@ -17,7 +16,6 @@ export class UserPage implements OnInit {
 
   constructor(public actionSheetController: ActionSheetController,
     private router: Router,
-    private util: UtilService,
     private toast: ToastService,
     private http: HttpService,
     private userService: UserService) { }

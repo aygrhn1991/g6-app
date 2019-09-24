@@ -20,23 +20,26 @@ export class HttpService {
     getUserInfo(phone: string) {
         return this.http.get(this.apiUrl + '/g6/auth/getUserInfo/' + phone);
     }
-    getBindVins(userid: number) {
-        return this.http.get(this.apiUrl + '/g6/auth/getBindVins/' + userid);
+    getBindVins(uid: number) {
+        return this.http.get(this.apiUrl + '/g6/auth/getBindVins/' + uid);
     }
-    bindVin(userid: number, vin: string) {
-        return this.http.get(this.apiUrl + '/g6/auth/bindVin/' + userid + '/' + vin);
+    bindVin(uid: number, vin: string) {
+        return this.http.get(this.apiUrl + '/g6/auth/bindVin/' + uid + '/' + vin);
     }
-    unBindVin(userid: number, vehid: number) {
-        return this.http.get(this.apiUrl + '/g6/auth/unBindVin/' + userid + '/' + vehid);
+    unBindVin(uid: number, vid: number) {
+        return this.http.get(this.apiUrl + '/g6/auth/unBindVin/' + uid + '/' + vid);
     }
-    updateUserInfo(userid: number, name: string) {
-        return this.http.get(this.apiUrl + '/g6/auth/updateUserInfo/' + userid + '/' + name);
+    updateUserInfo(uid: number, name: string) {
+        return this.http.get(this.apiUrl + '/g6/auth/updateUserInfo/' + uid + '/' + name);
     }
-    getVeh(vehid: number) {
-        return this.http.get(this.apiUrl + '/g6/home/getVeh/' + vehid);
+    getVeh(vid: number) {
+        return this.http.get(this.apiUrl + '/g6/home/getVeh/' + vid);
     }
-    getCustomData(vehid: number, type: CustomType, dateStart: number, dateEnd: number) {
-        return this.http.get(this.apiUrl + '/g6/home/getCustomData/' + vehid + '/' + type + '/' + dateStart + '/' + dateEnd);
+    getCustomData(vid: number, type: CustomType, dateStart: number, dateEnd: number) {
+        return this.http.get(this.apiUrl + '/g6/home/getCustomData/' + vid + '/' + type + '/' + dateStart + '/' + dateEnd);
+    }
+    getLocationData(vid: number) {
+        return this.http.get(this.apiUrl + '/g6/home/getLocationData/' + vid);
     }
     getTrackPoints() {
         return this.http.get('../../assets/points.json');

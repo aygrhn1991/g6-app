@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { UtilService } from 'src/app/services/util.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { HttpService } from 'src/app/services/http.service';
-import { UserService } from 'src/app/services/user.service';
 import { Result } from 'src/app/models/result.model';
 
 @Component({
@@ -23,8 +22,7 @@ export class RegisterPage implements OnInit {
   constructor(private router: Router,
     private util: UtilService,
     private toast: ToastService,
-    private http: HttpService,
-    private userService: UserService) { }
+    private http: HttpService) { }
 
   ngOnInit() {
   }
