@@ -28,21 +28,21 @@ export class LocationPage implements OnInit {
   ngOnInit() {
     this.http.getLocationData(this.userService.user.vin.id).subscribe((d: Result) => {
       console.log(d);
-      if(d.success){
-        setTimeout(() => {
-          var map = new BMap.Map(this.mapElement.nativeElement);
-          var point = new BMap.Point(116.3512761582, 39.9154689363);
-          map.centerAndZoom(point, 17);
-          var marker = new BMap.Marker(point);
-          map.addOverlay(marker);
-        }, 500);
+      if (d.success) {
+        let oldPoint = new BMap.Point(d.data.C_LNG, d.data.C_LAT);
+        let convertor = new BMap.Convertor();
+        convertor.translate([oldPoint], 1, 5, (dd) => {
+          console.log(dd);
+          if (dd.status === 0) {
+            let newPoint = dd.points[0];
+            let map = new BMap.Map(this.mapElement.nativeElement);
+            map.centerAndZoom(newPoint, 15);
+            var marker = new BMap.Marker(newPoint);
+            map.addOverlay(marker);
+          }
+        })
       }
     })
-
-
-
-    
-
   }
 
 }

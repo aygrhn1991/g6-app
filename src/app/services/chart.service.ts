@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ChartType } from '../enums/chart-type.enum';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ChartService {
 
   constructor() { }

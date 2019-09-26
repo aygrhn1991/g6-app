@@ -1,13 +1,13 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CustomType } from '../enums/custom-type.enum';
+import { UserService } from './user.service';
 
 @Injectable()
 export class HttpService {
 
     constructor(@Inject('API_URL') private apiUrl,
         private http: HttpClient) { }
-
     sendPhoneCode(phone: string, code: number) {
         return this.http.get(this.apiUrl + '/g6/auth/sendPhoneCode/' + phone + '/' + code);
     }
@@ -41,7 +41,14 @@ export class HttpService {
     getLocationData(vid: number) {
         return this.http.get(this.apiUrl + '/g6/home/getLocationData/' + vid);
     }
+    //↓↓↓↓↓尚未使用↓↓↓↓↓
+    gpsTransfer(x: number, y: number) {
+        return this.http.post('http://58.244.119.131:18004/gis/toMarsXY?tm=' + new Date().getTime(), { x: x, y: y });
+    }
     getTrackPoints() {
         return this.http.get('../../assets/points.json');
+    }
+    getTrackerData(vid: number, dateStart: number, dateEnd: number) {
+        return this.http.get(this.apiUrl + '/g6/home/getTrackerData/' + vid + '/' + '/' + dateStart + '/' + dateEnd);
     }
 }

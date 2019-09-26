@@ -14,10 +14,12 @@ export class UserInfo {
     id: number;
     name: string;
     phone: string;
-    code: number
+    code: number;
+    token: string;
     constructor() {
         this.id = null;
         this.name = null;
         this.phone = null;
+        this.token = null;
     }
 }

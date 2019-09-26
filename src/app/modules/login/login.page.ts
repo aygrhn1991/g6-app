@@ -58,9 +58,11 @@ export class LoginPage implements OnInit {
       this.http.login(this.userInfo.phone).subscribe((d: Result) => {
         this.toast.show(d.message);
         if (d.success) {
+          this.userService.user.info = new UserInfo();
+          this.userService.user.info.token = d.data;
+          this.userService.updateUser();
           this.http.getUserInfo(this.userInfo.phone).subscribe((d: Result) => {
             if (d.success) {
-              this.userService.user.info = new UserInfo();
               this.userService.user.info.id = d.data.C_ID;
               this.userService.user.info.phone = d.data.C_PHONE;
               this.userService.user.info.name = d.data.C_NAME;

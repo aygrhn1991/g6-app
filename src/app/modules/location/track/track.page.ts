@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
+import { UserService } from 'src/app/services/user.service';
+import { UtilService } from 'src/app/services/util.service';
 declare var BMap: any;
 declare var BMapLib: any;
 
@@ -14,8 +16,13 @@ export class TrackPage implements OnInit {
   lushu: any;
   lushuOpt: any;
   points = [];
-  constructor(private http: HttpService) { }
+  constructor(private util: UtilService,
+    private http: HttpService,
+    private userService: UserService) { }
   ngOnInit() {
+    this.http.getTrackerData(this.userService.user.vin.id,this.util.addDay(new Date(),-1000).getTime(),new Date().getTime()).subscribe(d=>{
+      console.log(d);
+    })
     this.http.getTrackPoints().subscribe((d: any) => {
       let tempP = [];
       for (let i = 0; i < 2000; i++) {
