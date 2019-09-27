@@ -8,11 +8,15 @@ import { IonicModule } from '@ionic/angular';
 import { UserPage } from './user.page';
 import { InfoPage } from './info/info.page';
 import { BindPage } from './bind/bind.page';
+import { SettingPage } from './setting/setting.page';
+import { UpdateLogPage } from './update-log/update-log.page';
 
 const routes: Routes = [
   { path: '', component: UserPage },
   { path: 'info', component: InfoPage },
-  { path: 'bind', component: BindPage }
+  { path: 'bind', component: BindPage },
+  { path: 'setting', component: SettingPage },
+  { path: 'update-log', component: UpdateLogPage },
 ];
 
 @NgModule({
@@ -25,7 +29,9 @@ const routes: Routes = [
   declarations: [
     UserPage,
     InfoPage,
-    BindPage
+    BindPage,
+    SettingPage,
+    UpdateLogPage,
   ]
 })
 export class UserPageModule { }
