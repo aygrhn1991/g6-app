@@ -15,6 +15,8 @@ import { HttpService } from './services/http.service';
 import { UserService } from './services/user.service';
 import { ChartService } from './services/chart.service';
 import { InterceptorService } from './services/interceptor.service';
+import { AppVersion } from '@ionic-native/app-version/ngx';
+import { AlertService } from './services/alert.service';
 
 @NgModule({
   declarations: [
@@ -32,11 +34,13 @@ import { InterceptorService } from './services/interceptor.service';
     SplashScreen,
     UtilService,
     ToastService,
+    AlertService,
     HttpService,
     UserService,
     ChartService,
-    //{ provide: 'API_URL', useValue: 'http://www.fenglingtime.com/appserver' },
-    { provide: 'API_URL', useValue: 'http://localhost:8080/appserver' },
+    AppVersion,
+    { provide: 'API_URL', useValue: 'http://www.fenglingtime.com/appserver' },
+    //{ provide: 'API_URL', useValue: 'http://localhost:8080/appserver' },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
   ],

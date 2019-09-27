@@ -20,8 +20,7 @@ export class UserPage implements OnInit {
     private http: HttpService,
     private userService: UserService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   unBindVin() {
     this.http.unBindVin(this.userService.user.info.id, this.userService.user.vin.id).subscribe((d: Result) => {

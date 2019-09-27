@@ -16,7 +16,7 @@ export class InterceptorService implements HttpInterceptor {
     private util: UtilService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    req = req.clone({ headers: req.headers.set("token", this.util.parameterTransfer(this.userService.user.info.token, '')) });
+    //req = req.clone({ headers: req.headers.set("token", this.util.parameterTransfer(this.userService.user.info.token, '')) });
     return next.handle(req).pipe(
       map((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) { }

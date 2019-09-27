@@ -16,6 +16,11 @@
             <ion-col size="12">
                 <ion-button expand="block" color="primary" [routerLink]="['/tabs/user/update-log']">更新日志</ion-button>
             </ion-col>
+            <ion-col size="12">
+                <div *ngFor="let l of list">
+                    <ion-text color="primary">{{l}}</ion-text>
+                </div>
+            </ion-col>
         </ion-row>
     </ion-grid>
 </ion-content>
