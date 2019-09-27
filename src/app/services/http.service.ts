@@ -1,13 +1,12 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { CustomType } from '../enums/custom-type.enum';
-import { UserService } from './user.service';
 
 @Injectable()
 export class HttpService {
 
-    constructor(@Inject('API_URL') private apiUrl,
-        private http: HttpClient) { }
+    constructor(@Inject('API_URL') private apiUrl, private http: HttpClient) { }
+    
     sendPhoneCode(phone: string, code: number) {
         return this.http.get(this.apiUrl + '/g6/auth/sendPhoneCode/' + phone + '/' + code);
     }
@@ -49,6 +48,6 @@ export class HttpService {
         return this.http.get('../../assets/points.json');
     }
     getTrackerData(vid: number, dateStart: number, dateEnd: number) {
-        return this.http.get(this.apiUrl + '/g6/home/getTrackerData/' + vid + '/' + '/' + dateStart + '/' + dateEnd);
+        return this.http.get(this.apiUrl + '/g6/home/getTrackerData/' + vid + '/' + dateStart + '/' + dateEnd);
     }
 }

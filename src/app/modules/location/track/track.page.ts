@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
 import { UserService } from 'src/app/services/user.service';
 import { UtilService } from 'src/app/services/util.service';
+import { ToastService } from 'src/app/services/toast.service';
+import { Result } from 'src/app/models/result.model';
 declare var BMap: any;
 declare var BMapLib: any;
 
@@ -18,9 +20,11 @@ export class TrackPage implements OnInit {
   points = [];
   constructor(private util: UtilService,
     private http: HttpService,
-    private userService: UserService) { }
+    private userService: UserService,
+    private toast: ToastService) { }
   ngOnInit() {
-    this.http.getTrackerData(this.userService.user.vin.id,this.util.addDay(new Date(),-1000).getTime(),new Date().getTime()).subscribe(d=>{
+    this.http.getTrackerData(this.userService.user.vin.id, this.util.addDay(new Date(), -1000).getTime(), new Date().getTime()).subscribe((d: Result) => {
+      //this.toast.show(d.message);
       console.log(d);
     })
     this.http.getTrackPoints().subscribe((d: any) => {

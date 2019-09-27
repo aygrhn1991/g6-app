@@ -5,13 +5,13 @@ import { AuthGuard } from '../../guards/auth.guard';
 import { BindGuard } from 'src/app/guards/bind.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/tabs/home', pathMatch: 'full' },
+  { path: '', redirectTo: 'tabs', pathMatch: 'full' },
   {
     path: 'tabs',
     component: TabsPage,
     canActivate: [AuthGuard],
     children: [
-      { path: '', loadChildren: () => import('../home/home.module').then(m => m.HomePageModule), canActivate: [BindGuard], },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', loadChildren: () => import('../home/home.module').then(m => m.HomePageModule), canActivate: [BindGuard], },
       { path: 'location', loadChildren: () => import('../location/location.module').then(m => m.LocationPageModule), canActivate: [BindGuard], },
       { path: 'user', loadChildren: () => import('../user/user.module').then(m => m.UserPageModule) }
