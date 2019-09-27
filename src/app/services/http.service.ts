@@ -6,7 +6,7 @@ import { CustomType } from '../enums/custom-type.enum';
 export class HttpService {
 
     constructor(@Inject('API_URL') private apiUrl, private http: HttpClient) { }
-    
+
     sendPhoneCode(phone: string, code: number) {
         return this.http.get(this.apiUrl + '/g6/auth/sendPhoneCode/' + phone + '/' + code);
     }
@@ -39,6 +39,9 @@ export class HttpService {
     }
     getLocationData(vid: number) {
         return this.http.get(this.apiUrl + '/g6/home/getLocationData/' + vid);
+    }
+    getDownloadUrl() {
+        return 'http://www.fenglingtime.com/api/update.apk';
     }
     //↓↓↓↓↓尚未使用↓↓↓↓↓
     gpsTransfer(x: number, y: number) {

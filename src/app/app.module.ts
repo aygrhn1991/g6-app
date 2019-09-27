@@ -15,8 +15,12 @@ import { HttpService } from './services/http.service';
 import { UserService } from './services/user.service';
 import { ChartService } from './services/chart.service';
 import { InterceptorService } from './services/interceptor.service';
-import { AppVersion } from '@ionic-native/app-version/ngx';
 import { AlertService } from './services/alert.service';
+
+import { FileOpener } from '@ionic-native/file-opener/ngx';
+import { FileTransfer } from '@ionic-native/file-transfer/ngx'; 
+import { AppVersion } from '@ionic-native/app-version/ngx'; 
+import { File } from '@ionic-native/file/ngx';
 
 @NgModule({
   declarations: [
@@ -39,6 +43,9 @@ import { AlertService } from './services/alert.service';
     UserService,
     ChartService,
     AppVersion,
+    FileOpener,
+    FileTransfer,
+    File,
     { provide: 'API_URL', useValue: 'http://www.fenglingtime.com/appserver' },
     //{ provide: 'API_URL', useValue: 'http://localhost:8080/appserver' },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
