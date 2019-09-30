@@ -22,7 +22,7 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.http.getVeh(this.userService.user.vin.id).subscribe((d: Result) => {
-      console.log(d);
+      console.log('home----->',d);
       if (d.success) {
         let vehInfo = new VehInfo();
         vehInfo.id = d.data.info.C_ID;

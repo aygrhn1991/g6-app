@@ -89,7 +89,7 @@ export class CustomPage implements OnInit {
       this.pageModel.type,
       this.util.getDayStart(new Date(this.searchModel.dateStart)).getTime(),
       this.util.getDayEnd(new Date(this.searchModel.dateEnd)).getTime()).subscribe((d: Result) => {
-        console.log(d);
+        console.log('custom----->', d);
         if (d.success) {
           let dataOrg = [];
           switch (this.pageModel.type) {

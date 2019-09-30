@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate {
     private userService: UserService,
     private util: UtilService) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    console.log('auth.guard', this.userService.user);
+    console.log('auth.guard----->', this.userService.user);
     if (this.util.isNull(this.userService.user.info.id)) {
       this.router.navigate(['/login']);
       return false;

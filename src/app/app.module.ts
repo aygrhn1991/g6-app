@@ -46,8 +46,9 @@ import { File } from '@ionic-native/file/ngx';
     FileOpener,
     FileTransfer,
     File,
-    { provide: 'API_URL', useValue: 'http://www.fenglingtime.com/appserver' },
-    //{ provide: 'API_URL', useValue: 'http://localhost:8080/appserver' },
+    //{ provide: 'API_URL', useValue: 'http://www.fenglingtime.com/appserver' },
+    { provide: 'API_URL', useValue: 'http://localhost:8080/appserver' },
+    //{ provide: 'API_URL', useValue: 'http://192.168.40.153:8642/appserver' },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
   ],

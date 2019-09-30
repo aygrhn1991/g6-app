@@ -71,35 +71,56 @@ export class SettingPage implements OnInit {
     });
     await alert.present();
   }
-
+  pg=-1;
   startDownload() {
     let fileDataDirectory = this.file.dataDirectory;
     this.list.unshift('当前app安装目录：' + fileDataDirectory);
 
     let targetUrl = this.http.getDownloadUrl();
-    this.list.unshift('更新文件url');
+    this.list.unshift('更新文件url：' + targetUrl);
 
-    let fileTransferObject: FileTransferObject = this.fileTransfer.create();
+    const fileTransferObject: FileTransferObject = this.fileTransfer.create();
     fileTransferObject.download(targetUrl, fileDataDirectory + 'update.apk').then(
       (entry) => {
-        this.fileOpener.open(entry.toURL(), 'application/vnd.android.package-archive')
-          .then(() => {
-            this.list.unshift('↓↓↓↓↓文件已打开');
-          })
-          .catch(err => {
-            this.list.unshift('↓↓↓↓↓文件打开失败：' + err);
-          });
+        this.list.unshift('↓↓↓↓↓下载完成（回调函数判断）');
+        // this.fileOpener.open(entry.toURL(), 'application/vnd.android.package-archive')
+        //   .then(() => {
+        //     this.list.unshift('↓↓↓↓↓文件已打开');
+        //   })
+        //   .catch(err => {
+        //     this.list.unshift('↓↓↓↓↓文件打开失败：' + err);
+        //   });
       },
       (err) => {
         this.list.unshift('↓↓↓↓↓下载失败：' + JSON.stringify(err));
       });
+      let now=-1;
+      var oProgressNum = document.getElementById('ppgg');
     fileTransferObject.onProgress((event: ProgressEvent) => {
-      let num = Math.ceil(event.loaded / event.total * 100);
+      // this.pg = Math.ceil(event.loaded / event.total * 100);
+      // if (this.pg === 100) {
+      //   this.list.unshift('↓↓↓↓↓下载完成（进度100判断）');
+      // } else {
+      //   this.list.unshift('↓↓↓↓↓下载进度:' + this.pg + '%');
+      // }
+      // if(event.lengthComputable){
+      //   now=event.loaded/event.total*100;
+      // }
+      let num = Math.ceil(event.loaded / event.total * 100);  //转化成1-100的进度
       if (num === 100) {
-        this.list.unshift('↓↓↓↓↓下载完成');
+        oProgressNum.innerHTML = '下载完成';
       } else {
-        this.list.unshift('↓↓↓↓↓下载进度:' + num + '%');
+        oProgressNum.innerHTML = '下载进度：' + num + '%';
+
       }
     });
+
+    // let timer=setInterval(()=>{
+    //     this.pg=now;
+    //     if(now>=99){
+    //       clearInterval(timer);
+    //     }
+    // },300);
+
   }
 }

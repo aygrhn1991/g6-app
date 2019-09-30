@@ -32,7 +32,7 @@ export class LocationPage implements OnInit {
         let oldPoint = new BMap.Point(d.data.C_LNG, d.data.C_LAT);
         let convertor = new BMap.Convertor();
         convertor.translate([oldPoint], 1, 5, (dd) => {
-          console.log(dd);
+          console.log('百度官方坐标转换' + dd);
           if (dd.status === 0) {
             let newPoint = dd.points[0];
             let map = new BMap.Map(this.mapElement.nativeElement);
