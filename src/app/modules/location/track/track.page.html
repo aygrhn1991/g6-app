@@ -8,13 +8,31 @@
 </ion-header>
 
 <ion-content>
-    <div #mapElement class="map"></div>
-    <div id="result"></div>
+    <div #mapElement class="track-map"></div>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="12">
+                <ion-item>
+                    <ion-note slot="start">开始时间</ion-note>
+                    <ion-datetime [displayFormat]="searchModel.dateFormat" [min]="searchModel.minDate" [max]="searchModel.maxDate" [(ngModel)]="searchModel.dateStart" cancelText="取消" doneText="确定"></ion-datetime>
+                </ion-item>
+            </ion-col>
+            <ion-col size="12">
+                <ion-item>
+                    <ion-note slot="start">截止时间</ion-note>
+                    <ion-datetime [displayFormat]="searchModel.dateFormat" [min]="searchModel.minDate" [max]="searchModel.maxDate" [(ngModel)]="searchModel.dateEnd" cancelText="取消" doneText="确定"></ion-datetime>
+                </ion-item>
+            </ion-col>
+            <ion-col size="12">
+                <ion-button expand="block" (click)="search()">查询</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
     <ion-button (click)="start()">开始</ion-button>
     <ion-button (click)="stop()">停止</ion-button>
     <ion-button (click)="pause()">暂停</ion-button>
-    <ion-button (click)="hide()">隐藏信息窗口</ion-button>
-    <ion-button (click)="show()">展示信息窗口</ion-button>
-    <ion-button (click)="speed1()">speed1</ion-button>
-    <ion-button (click)="speed2()">speed2</ion-button>
+    <ion-button (click)="speed(speedType.up)">加速</ion-button>
+    <ion-button (click)="speed(speedType.down)">减速</ion-button>
+    <ion-input [value]="pageModel.speed"></ion-input>
+    <ion-progress-bar [value]="pageModel.progress"></ion-progress-bar>
 </ion-content>

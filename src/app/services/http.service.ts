@@ -40,17 +40,12 @@ export class HttpService {
     getLocationData(vid: number) {
         return this.http.get(this.apiUrl + '/g6/home/getLocationData/' + vid);
     }
+    getTrackerData(vid: number, dateStart: number, dateEnd: number) {
+        return this.http.get('../../assets/points.json');
+    }
+    //↓↓↓↓↓尚未使用↓↓↓↓↓
     getDownloadUrl() {
         return 'http://www.fenglingtime.com/api/update.apk';
     }
-    //↓↓↓↓↓尚未使用↓↓↓↓↓
-    gpsTransfer(x: number, y: number) {
-        return this.http.post('http://58.244.119.131:18004/gis/toMarsXY?tm=' + new Date().getTime(), { x: x, y: y });
-    }
-    getTrackPoints() {
-        return this.http.get('../../assets/points.json');
-    }
-    getTrackerData(vid: number, dateStart: number, dateEnd: number) {
-        return this.http.get(this.apiUrl + '/g6/home/getTrackerData/' + vid + '/' + dateStart + '/' + dateEnd);
-    }
+
 }

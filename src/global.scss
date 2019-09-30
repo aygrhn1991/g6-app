@@ -28,18 +28,22 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
-.head {
-    border-radius: 100px;
-}
-
 .list-scroll {
     max-height: 300px;
     overflow: auto;
 }
 
-.map {
+.location-map {
     position: absolute;
     top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.track-map {
+    position: absolute;
+    top: 180px;
     left: 0;
     right: 0;
     bottom: 0;

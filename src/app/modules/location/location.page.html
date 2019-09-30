@@ -5,8 +5,9 @@
 </ion-header>
 
 <ion-content>
-    <div #mapElement class="map"></div>
+    <div #mapElement class="location-map"></div>
     <div>
         <ion-button [routerLink]="['/tabs/location/track']">轨迹回放</ion-button>
+        <ion-button (click)="search()">重置定位</ion-button>
     </div>
 </ion-content>

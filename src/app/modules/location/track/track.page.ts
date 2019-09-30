@@ -4,6 +4,8 @@ import { UserService } from 'src/app/services/user.service';
 import { UtilService } from 'src/app/services/util.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { Result } from 'src/app/models/result.model';
+import { SearchModel } from 'src/app/models/search.model';
+import { SpeedType, Speed } from 'src/app/enums/speed-type.enum';
 declare var BMap: any;
 declare var BMapLib: any;
 
@@ -13,82 +15,64 @@ declare var BMapLib: any;
   styleUrls: ['./track.page.scss'],
 })
 export class TrackPage implements OnInit {
+  pageModel = {
+    speed: Speed.speed1,
+    progress: 0,
+  }
+  searchModel: SearchModel = new SearchModel();
+  lushu: any;
+  points: Array<any>;
+  speedType = SpeedType;
 
   @ViewChild('mapElement', null) mapElement: ElementRef;
-  lushu: any;
-  lushuOpt: any;
-  points = [];
+
   constructor(private util: UtilService,
     private http: HttpService,
     private userService: UserService,
     private toast: ToastService) { }
-  ngOnInit() {
-    this.http.getTrackerData(this.userService.user.vin.id, this.util.addDay(new Date(), -1000).getTime(), new Date().getTime()).subscribe((d: Result) => {
-      //this.toast.show(d.message);
-      console.log(d);
-    })
-    this.http.getTrackPoints().subscribe((d: any) => {
-      let tempP = [];
-      for (let i = 0; i < 2000; i++) {
-        if (i % 200 == 0) {
-          tempP.push(d[i]);
-        }
-      }
 
-      let _points = tempP.map(x => {
-        //return new BMap.Point(x.lng, x.lat);
-        return new BMap.Point(x.x, x.y);
+  ngOnInit() { }
+
+  search() {
+    this.http.getTrackerData(this.userService.user.vin.id,
+      this.util.getDayStart(new Date(this.searchModel.dateStart)).getTime(),
+      this.util.getDayEnd(new Date(this.searchModel.dateEnd)).getTime()).subscribe((d: any) => {
+        console.log('track----->', d);
+        this.points = d.map(x => {
+          return new BMap.Point(x.x, x.y);
+        }).slice(0, 50);
+        ///////////////////////////////
+        let map = new BMap.Map(this.mapElement.nativeElement);
+        map.centerAndZoom(this.points[0], 19);
+        map.addOverlay(new BMap.Polyline(this.points, { strokeColor: '#111' }));
+        map.setViewport(this.points);
+        ///////////////////////////////
+        let lushuOption = {
+          defaultContent: this.userService.user.vin.vin,
+          autoView: true,
+          icon: new BMap.Icon('../../assets/marker.png', new BMap.Size(30, 50), { anchor: new BMap.Size(15, 50) }),
+          speed: this.pageModel.speed,
+          enableRotation: false,
+          landmarkPois: []//传空数组，不可以不写，会报错
+        };
+        this.lushu = new BMapLib.LuShu(map, this.points, lushuOption);
       })
-
-
-      var convertor = new BMap.Convertor();
-      convertor.translate(_points, 1, 5, (data) => {
-        console.log(data);
-        if (data.status === 0) {
-          this.points = data.points;
-          this.makeLushu();
-        }
-      })
-
-      console.log(this.points.length);
-
-    })
   }
 
-
-  makeLushu() {
-    setTimeout(() => {
-      var map = new BMap.Map(this.mapElement.nativeElement);
-      map.centerAndZoom(this.points[0], 19);
-      map.addOverlay(new BMap.Polyline(this.points, { strokeColor: '#111' }));
-      map.setViewport(this.points);
-      this.lushuOpt = {
-        defaultContent: "从天安门到百度大厦",//"从天安门到百度大厦"
-        autoView: true,//是否开启自动视野调整，如果开启那么路书在运动过程中会根据视野自动调整
-        icon: new BMap.Icon('../../assets/marker.png', new BMap.Size(30, 50), { anchor: new BMap.Size(15, 50) }),
-        speed: 500,
-        enableRotation: false,//是否设置marker随着道路的走向进行旋转
-        landmarkPois: [
-          // { lng: this.points[100].lng, lat: this.points[100].lat, html: '加油站', pauseTime: 1 },
-          // { lng: this.points[200].lng, lat: this.points[200].lat, html: '肯德基早餐', pauseTime: 1}
-        ]
-      };
-      this.lushu = new BMapLib.LuShu(map, this.points, this.lushuOpt);
-    }, 1000);
-  }
   start() {
     this.lushu.start();
     let timer = setInterval(() => {
-      console.log('out', timer);
-      let li = this.lushu.i;
-      let pc = this.points.length;
-      console.log((li / pc).toFixed(2));
-      if (li == (pc - 1)) {
+      let lushuIndex = this.lushu.i;
+      let pointsCount = this.points.length;
+      this.pageModel.progress = lushuIndex / pointsCount;
+      console.log((lushuIndex / pointsCount).toFixed(2));
+      if (lushuIndex == (pointsCount - 1)) {
+        this.pageModel.progress = 1;
         clearInterval(timer);
-        console.log('stop', timer);
+        console.log('stop timer', timer);
       }
-    }, 1000)
-
+    }, 200);
+    console.log('start timer', timer);
   }
   stop() {
     this.lushu.stop();
@@ -96,18 +80,54 @@ export class TrackPage implements OnInit {
   pause() {
     this.lushu.pause();
   }
-  hide() {
-    this.lushu.hideInfoWindow();
+  speed(type: SpeedType) {
+    switch (this.lushu._opts.speed) {
+      case Speed.speed0125:
+        this.pageModel.speed = type == SpeedType.up ? Speed.speed025 : Speed.speed0125;
+        break;
+      case Speed.speed025:
+        this.pageModel.speed = type == SpeedType.up ? Speed.speed05 : Speed.speed0125;
+        break;
+      case Speed.speed05:
+        this.pageModel.speed = type == SpeedType.up ? Speed.speed1 : Speed.speed025;
+        break;
+      case Speed.speed1:
+        this.pageModel.speed = type == SpeedType.up ? Speed.speed2 : Speed.speed05;
+        break;
+      case Speed.speed2:
+        this.pageModel.speed = type == SpeedType.up ? Speed.speed4 : Speed.speed1;
+        break;
+      case Speed.speed4:
+        this.pageModel.speed = type == SpeedType.up ? Speed.speed4 : Speed.speed2;
+        break;
+      case Speed.speed4:
+        this.pageModel.speed = type == SpeedType.up ? Speed.speed4 : Speed.speed4;
+        break;
+      default:
+        break;
+    }
+    this.lushu._opts.speed = this.pageModel.speed;
   }
-  show() {
-    this.lushu.showInfoWindow();
+  //此方法暂时用不到
+  pointsTransfer(points: Array<any>) {
+    let interval = 10;//取点数量
+    if (points.length <= interval) {
+      return points;
+    }
+    let intervalSize = Math.floor(points.length / (interval - 1));
+    let oldPoints = [];
+    for (let i = 0; i < interval; i++) {
+      oldPoints.push(points[i * intervalSize]);
+    }
+    let convertor = new BMap.Convertor();
+    let newPoints: Array<any> = [];
+    convertor.translate(oldPoints, 1, 5, (dd) => {
+      console.log('百度官方坐标转换----->', dd);
+      if (dd.status === 0) {
+        newPoints = dd.points;
+      }
+    });
+    return newPoints;
   }
-  speed1() {
-    console.log(this.lushu)
-    this.lushu._opts.speed = 3000;
-  }
-  speed2() {
-    console.log(this.lushu)
-    this.lushu._opts.speed = 300;
-  }
+
 }
