@@ -16,7 +16,7 @@ export class HomePage implements OnInit {
   veh: Veh = new Veh();
   customType = CustomType;
   modalType = ModalType;
-  modalSelected = this.modalType.basic;
+  modalSelected = ModalType.basic;
 
   constructor(private http: HttpService,
     private toast: ToastService,

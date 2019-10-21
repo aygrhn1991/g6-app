@@ -38,7 +38,8 @@ export class HttpService {
         return this.http.get(this.apiUrl + '/g6/home/getCustomData/' + vid + '/' + type + '/' + dateStart + '/' + dateEnd);
     }
     getLocationData(vid: number) {
-        return this.http.get(this.apiUrl + '/g6/home/getLocationData/' + vid);
+        return this.http.get('../../assets/points.json');
+        //return this.http.get(this.apiUrl + '/g6/home/getLocationData/' + vid);
     }
     getTrackerData(vid: number, dateStart: number, dateEnd: number) {
         return this.http.get('../../assets/points.json');

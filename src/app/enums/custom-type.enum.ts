@@ -10,3 +10,7 @@ export enum ModalType{
     mode,
     statistic,
 }
+export enum LocationType{
+    location,
+    track,
+}

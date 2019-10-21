@@ -6,8 +6,40 @@
 
 <ion-content>
     <div #mapElement class="location-map"></div>
-    <div>
-        <ion-button [routerLink]="['/tabs/location/track']">轨迹回放</ion-button>
-        <ion-button (click)="search()">重置定位</ion-button>
+    <div class="location-tabs">
+        <div class="location-tab" (click)="search1()">
+            <img src="../../../assets/img/head.png">
+            <div>定位</div>
+        </div>
+        <div class="location-tab" (click)="locationSelected=locationType.track">
+            <img src="../../../assets/img/head.png">
+            <div>轨迹</div>
+        </div>
+    </div>
+    <div class="track-panel" *ngIf="locationSelected==locationType.track">
+        <ion-item>
+            <ion-note slot="start">开始时间</ion-note>
+            <ion-datetime [displayFormat]="searchModel.dateFormat" [min]="searchModel.minDate"
+                [max]="searchModel.maxDate" [(ngModel)]="searchModel.dateStart" cancelText="取消" doneText="确定">
+            </ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-note slot="start">截止时间</ion-note>
+            <ion-datetime [displayFormat]="searchModel.dateFormat" [min]="searchModel.minDate"
+                [max]="searchModel.maxDate" [(ngModel)]="searchModel.dateEnd" cancelText="取消" doneText="确定">
+            </ion-datetime>
+        </ion-item>
+        <div class="track-btn-search" (click)="search2()"></div>
+        <ion-item>
+            <button class="track-btn" (click)="start()">开始</button>
+            <button class="track-btn" (click)="stop()">停止</button>
+            <button class="track-btn" (click)="pause()">暂停</button>
+            <button class="track-btn" (click)="speed(speedType.up)">加速</button>
+            <button class="track-btn" (click)="speed(speedType.down)">减速</button>
+        </ion-item>
+        <ion-item>
+            <ion-progress-bar [value]="pageModel.progress"></ion-progress-bar>
+            <ion-note slot="end">x{{pageModel.speed}}</ion-note>
+        </ion-item>
     </div>
 </ion-content>

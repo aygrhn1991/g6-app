@@ -28,6 +28,7 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
 :root {
     --ion-background-color: #040724;
     --ion-toolbar-background: linear-gradient(to bottom, #00528F, #00052E);
@@ -42,7 +43,6 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: 40% 60%;
-    color: #fff;
 }
 
 .home-scan {
@@ -63,9 +63,11 @@
         top: 0%;
         opacity: 0;
     }
+
     50% {
         opacity: 1;
     }
+
     100% {
         top: 70%;
         opacity: 0;
@@ -88,7 +90,7 @@
     border-radius: 10px;
     padding: 20px;
     margin-top: 20px;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 32px;
 }
 
@@ -166,10 +168,109 @@
     bottom: 0;
 }
 
-.track-map {
+.location-tabs {
     position: absolute;
-    top: 180px;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    left: 25%;
+    right: 25%;
+    bottom: 20px;
+    background: var(--ion-toolbar-background);
+    text-align: center;
+    border-radius: 100px;
+    padding: 5px 0;
+    font-size: 14px;
+}
+
+.location-tabs>.location-tab:first-child {
+    border-right: 1px solid #666;
+}
+
+.location-tab {
+    display: inline-block;
+    width: 45%;
+}
+
+.location-tab>img {
+    width: 20px;
+    height: 20px;
+}
+
+.track-panel {
+    position: relative;
+    margin: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.track-btn-search {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    background-image: url('./assets/img/head.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    border-radius: 10px;
+    z-index: 2;
+}
+
+.track-btn {
+    background: var(--ion-toolbar-background);
+    color: #fff;
+    border-radius: 20px;
+    padding: 3px 0;
+    margin: 0 3px;
+    width: 20%;
+}
+
+ion-note {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 14px;
+}
+
+ion-datetime {
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 12px;
+}
+
+ion-item {
+    --min-height: 30px;
+    --inner-border-width: 0;
+}
+
+// .track-map {
+//     position: absolute;
+//     top: 180px;
+//     left: 0;
+//     right: 0;
+//     bottom: 0;
+// }
+
+.user-btns {
+    margin: 10px;
+    padding: 10px;
+    background: #00528F;
+    border-radius: 10px;
+}
+
+.user-btns-title {
+    font-weight: bold;
+    border-bottom: 1px solid var(--ion-tab-bar-color-activated);
+    font-size: 14px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+}
+
+.user-btn {
+    display: inline-block;
+    width: 60px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.user-btn>img {
+    width: 30px;
+    height: 30px;
 }
