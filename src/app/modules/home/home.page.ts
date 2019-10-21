@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Veh, VehInfo, VehStatistic, VehCondition } from 'src/app/models/veh.model';
 import { HttpService } from 'src/app/services/http.service';
-import { CustomType } from 'src/app/enums/custom-type.enum';
+import { CustomType, ModalType } from 'src/app/enums/custom-type.enum';
 import { UserService } from 'src/app/services/user.service';
 import { Result } from 'src/app/models/result.model';
 import { ToastService } from 'src/app/services/toast.service';
@@ -15,6 +15,8 @@ export class HomePage implements OnInit {
 
   veh: Veh = new Veh();
   customType = CustomType;
+  modalType = ModalType;
+  modalSelected = this.modalType.basic;
 
   constructor(private http: HttpService,
     private toast: ToastService,
@@ -22,7 +24,7 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.http.getVeh(this.userService.user.vin.id).subscribe((d: Result) => {
-      console.log('home----->',d);
+      console.log('home----->', d);
       if (d.success) {
         let vehInfo = new VehInfo();
         vehInfo.id = d.data.info.C_ID;

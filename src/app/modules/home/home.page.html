@@ -1,86 +1,52 @@
 <ion-header>
-    <ion-toolbar color="dark">
+    <ion-toolbar>
         <ion-title>主页</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-card>
-        <ion-card-header>
-            <ion-card-title>基本信息</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-            <ion-grid>
-                <ion-row>
-                    <ion-col size="12">
-                        VIN号码：{{veh.info.vin}}
-                    </ion-col>
-                    <ion-col size="12">
-                        车牌号码：{{veh.info.vehno}}
-                    </ion-col>
-                    <ion-col size="12">
-                        车牌颜色：{{veh.info.color}}
-                    </ion-col>
-                    <ion-col size="12">
-                        车身颜色：{{veh.info.bodycolor}}
-                    </ion-col>
-                    <ion-col size="12">
-                        终端编号：{{veh.info.dtucode}}
-                    </ion-col>
-                    <ion-col size="12">
-                        SIM卡号：{{veh.info.simcode}}
-                    </ion-col>
-                    <ion-col size="12">
-                        发动机编号：{{veh.info.engcode}}
-                    </ion-col>
-                    <ion-col size="12">
-                        车辆型号：{{veh.info.vehmodel}}
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
-        </ion-card-content>
-    </ion-card>
-    <ion-card>
-        <ion-card-header>
-            <ion-card-title>工况数据</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-            <ion-grid>
-                <ion-row>
-                    <ion-col size="12">
-                        油箱液位：{{veh.condition.fuel}}
-                    </ion-col>
-                    <ion-col size="12">
-                        反应剂余量：{{veh.condition.reactant}}
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
-        </ion-card-content>
-    </ion-card>
-    <ion-card>
-        <ion-card-header>
-            <ion-card-title>车辆数据汇总</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-            <ion-grid>
-                <ion-row>
-                    <ion-col size="12" [routerLink]="['/tabs/home/custom',customType.days]">
-                        车辆上线天数：{{veh.statistic.days}}天
-                    </ion-col>
-                    <ion-col size="12" [routerLink]="['/tabs/home/custom',customType.mile]">
-                        车辆行驶总里程：{{veh.statistic.mile}}km
-                    </ion-col>
-                    <ion-col size="12" [routerLink]="['/tabs/home/custom',customType.oil]">
-                        总油耗：{{veh.statistic.oil}}L
-                    </ion-col>
-                    <ion-col size="12" [routerLink]="['/tabs/home/custom',customType.nox]">
-                        总NOx排放量：{{veh.statistic.nox}}L
-                    </ion-col>
-                    <ion-col size="12" [routerLink]="['/tabs/home/custom',customType.faults]">
-                        总故障数：{{veh.statistic.faults}}次
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
-        </ion-card-content>
-    </ion-card>
+    <div class="home-bg">
+        <div class="home-scan"></div>
+        <ion-grid>
+            <ion-row>
+                <ion-col size="3">
+                    <div class="home-btn" (click)="modalSelected=modalType.basic">
+                        <img src="{{'../../../assets/img/'+ (modalSelected==modalType.basic?'home-btn1-active.png':'home-btn1.png')}}">
+                    </div>
+                    <div class="home-btn" (click)="modalSelected=modalType.mode">
+                        <img src="{{'../../../assets/img/'+ (modalSelected==modalType.mode?'home-btn2-active.png':'home-btn2.png')}}">
+                    </div>
+                    <div class="home-btn" (click)="modalSelected=modalType.statistic">
+                        <img src="{{'../../../assets/img/'+ (modalSelected==modalType.statistic?'home-btn3-active.png':'home-btn3.png')}}">
+                    </div>
+                </ion-col>
+                <ion-col size="9">
+                    <div class="home-modal home-modal1" *ngIf="modalSelected==modalType.basic">
+                        <div class="home-modal-title">基本信息</div>
+                        <div>VIN号码：{{veh.info.vin}}</div>
+                        <div>车牌号码：{{veh.info.vehno}}</div>
+                        <div>车牌颜色：{{veh.info.color}}</div>
+                        <div>车身颜色：{{veh.info.bodycolor}}</div>
+                        <div>终端编号：{{veh.info.dtucode}}</div>
+                        <div>SIM卡号：{{veh.info.simcode}}</div>
+                        <div>发动机编号：{{veh.info.engcode}}</div>
+                        <div>车辆型号：{{veh.info.vehmodel}}</div>
+                    </div>
+                    <div class="home-modal home-modal2" *ngIf="modalSelected==modalType.mode">
+                        <div class="home-modal-title">工况数据</div>
+                        <div>油箱液位：{{veh.condition.fuel}}</div>
+                        <div>反应剂余量：{{veh.condition.reactant}}</div>
+                    </div>
+                    <div class="home-modal home-modal3" *ngIf="modalSelected==modalType.statistic">
+                        <div class="home-modal-title">车辆数据汇总</div>
+                        <div class="home-modal-item-more" [routerLink]="['/tabs/home/custom',customType.days]">车辆上线天数：{{veh.statistic.days}}天</div>
+                        <div class="home-modal-item-more" [routerLink]="['/tabs/home/custom',customType.mile]">车辆行驶总里程：{{veh.statistic.mile}}km</div>
+                        <div class="home-modal-item-more" [routerLink]="['/tabs/home/custom',customType.oil]">总油耗：{{veh.statistic.oil}}L</div>
+                        <div class="home-modal-item-more" [routerLink]="['/tabs/home/custom',customType.nox]">总NOx排放量：{{veh.statistic.nox}}L</div>
+                        <div class="home-modal-item-more" [routerLink]="['/tabs/home/custom',customType.faults]">总故障数：{{veh.statistic.faults}}次</div>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
 </ion-content>

@@ -5,3 +5,8 @@ export enum CustomType {
     nox,
     faults
 }
+export enum ModalType{
+    basic,
+    mode,
+    statistic,
+}

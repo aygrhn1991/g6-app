@@ -6,8 +6,6 @@ import { ToastService } from './toast.service';
 import { UserService } from './user.service';
 import { UtilService } from './util.service';
 
-
-
 @Injectable()
 export class InterceptorService implements HttpInterceptor {
 
