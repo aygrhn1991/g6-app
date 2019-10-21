@@ -40,7 +40,7 @@ export class TrackPage implements OnInit {
         console.log('track----->', d);
         this.points = d.map(x => {
           return new BMap.Point(x.x, x.y);
-        }).slice(0, 50);
+        }).slice(0, 500);
         ///////////////////////////////
         let map = new BMap.Map(this.mapElement.nativeElement);
         map.centerAndZoom(this.points[0], 19);
