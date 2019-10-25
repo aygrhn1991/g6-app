@@ -8,26 +8,22 @@
     <div #mapElement class="location-map"></div>
     <div class="location-tabs">
         <div class="location-tab" (click)="search1()">
-            <img src="../../../assets/img/head.png">
+            <img src="../../../assets/img/location-locate.png">
             <div>定位</div>
         </div>
         <div class="location-tab" (click)="locationSelected=locationType.track">
-            <img src="../../../assets/img/head.png">
+            <img src="../../../assets/img/location-track.png">
             <div>轨迹</div>
         </div>
     </div>
     <div class="track-panel" *ngIf="locationSelected==locationType.track">
         <ion-item>
             <ion-note slot="start">开始时间</ion-note>
-            <ion-datetime [displayFormat]="searchModel.dateFormat" [min]="searchModel.minDate"
-                [max]="searchModel.maxDate" [(ngModel)]="searchModel.dateStart" cancelText="取消" doneText="确定">
-            </ion-datetime>
+            <ion-datetime [displayFormat]="searchModel.dateFormat" [min]="searchModel.minDate" [max]="searchModel.maxDate" [(ngModel)]="searchModel.dateStart" cancelText="取消" doneText="确定"></ion-datetime>
         </ion-item>
         <ion-item>
             <ion-note slot="start">截止时间</ion-note>
-            <ion-datetime [displayFormat]="searchModel.dateFormat" [min]="searchModel.minDate"
-                [max]="searchModel.maxDate" [(ngModel)]="searchModel.dateEnd" cancelText="取消" doneText="确定">
-            </ion-datetime>
+            <ion-datetime [displayFormat]="searchModel.dateFormat" [min]="searchModel.minDate" [max]="searchModel.maxDate" [(ngModel)]="searchModel.dateEnd" cancelText="取消" doneText="确定"></ion-datetime>
         </ion-item>
         <div class="track-btn-search" (click)="search2()"></div>
         <ion-item>

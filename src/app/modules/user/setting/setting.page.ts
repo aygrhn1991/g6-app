@@ -30,6 +30,8 @@ export class SettingPage implements OnInit {
   ngOnInit() { }
 
   checkUpdate() {
+    this.toast.show('当前无新版本');
+    return;
     this.list = [];
     this.appVersion.getAppName().then((value: any) => {
       this.list.unshift('当前app名称：' + value);
@@ -71,7 +73,7 @@ export class SettingPage implements OnInit {
     });
     await alert.present();
   }
-  pg=-1;
+  pg = -1;
   startDownload() {
     let fileDataDirectory = this.file.dataDirectory;
     this.list.unshift('当前app安装目录：' + fileDataDirectory);
@@ -94,8 +96,8 @@ export class SettingPage implements OnInit {
       (err) => {
         this.list.unshift('↓↓↓↓↓下载失败：' + JSON.stringify(err));
       });
-      let now=-1;
-      var oProgressNum = document.getElementById('ppgg');
+    let now = -1;
+    var oProgressNum = document.getElementById('ppgg');
     fileTransferObject.onProgress((event: ProgressEvent) => {
       // this.pg = Math.ceil(event.loaded / event.total * 100);
       // if (this.pg === 100) {

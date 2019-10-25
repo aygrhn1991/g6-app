@@ -44,7 +44,7 @@ export class LocationPage implements OnInit {
   }
 
   search1() {
-    this.locationSelected=LocationType.location;
+    this.locationSelected = LocationType.location;
     this.http.getLocationData(this.userService.user.vin.id).subscribe((d: Result) => {
       console.log('location----->', d);
       //if (d.success) {
@@ -72,7 +72,7 @@ export class LocationPage implements OnInit {
       this.util.getDayStart(new Date(this.searchModel.dateStart)).getTime(),
       this.util.getDayEnd(new Date(this.searchModel.dateEnd)).getTime()).subscribe((d: any) => {
         console.log('track----->', d);
-        this.points = d.map(x => {
+        this.points = JSON.parse(d.data).data.map(x => {
           return new BMap.Point(x.x, x.y);
         }).slice(0, 2000);
         ///////////////////////////////

@@ -28,7 +28,6 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
-
 :root {
     --ion-background-color: #040724;
     --ion-toolbar-background: linear-gradient(to bottom, #00528F, #00052E);
@@ -63,11 +62,9 @@
         top: 0%;
         opacity: 0;
     }
-
     50% {
         opacity: 1;
     }
-
     100% {
         top: 70%;
         opacity: 0;
@@ -155,11 +152,6 @@
     transform: rotate(-135deg);
 }
 
-.custom-list-scroll {
-    max-height: 300px;
-    overflow: auto;
-}
-
 .location-map {
     position: absolute;
     top: 0;
@@ -198,20 +190,21 @@
     position: relative;
     margin: 10px;
     border-radius: 10px;
+    background: var(--ion-background-color);
     overflow: hidden;
 }
 
 .track-btn-search {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 40px;
-    height: 40px;
-    background-image: url('./assets/img/head.png');
+    top: 15px;
+    right: 15px;
+    width: 55px;
+    height: 55px;
+    background-image: url('./assets/img/location-search.png');
     background-repeat: no-repeat;
     background-size: 100%;
     border-radius: 10px;
-    z-index: 2;
+    z-index: 11;
 }
 
 .track-btn {
@@ -223,30 +216,17 @@
     width: 20%;
 }
 
-ion-note {
-    margin-top: 0;
-    margin-bottom: 0;
-    font-size: 14px;
-}
-
 ion-datetime {
-    padding-top: 0;
-    padding-bottom: 0;
-    font-size: 12px;
+    z-index: 10;
 }
 
 ion-item {
-    --min-height: 30px;
     --inner-border-width: 0;
 }
 
-// .track-map {
-//     position: absolute;
-//     top: 180px;
-//     left: 0;
-//     right: 0;
-//     bottom: 0;
-// }
+ion-progress-bar {
+    z-index: 10;
+}
 
 .user-btns {
     margin: 10px;
@@ -273,4 +253,16 @@ ion-item {
 .user-btn>img {
     width: 30px;
     height: 30px;
+}
+
+.custom-list-scroll {
+    max-height: 300px;
+    overflow: auto;
+}
+
+ion-button {
+    --background: var(--ion-toolbar-background);
+    --padding-top: 5px;
+    --padding-bottom: 5px;
+    height: initial;
 }

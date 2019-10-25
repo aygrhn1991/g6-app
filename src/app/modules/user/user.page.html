@@ -7,7 +7,7 @@
 <ion-content>
     <ion-item style="margin-top:10px;">
         <ion-thumbnail slot="start">
-            <img src="../../../assets/img/head.png">
+            <img src="../../../assets/img/user-head.png">
         </ion-thumbnail>
         <ion-label>
             <h2>{{userService.user.info.phone}}</h2>
@@ -17,7 +17,7 @@
     <div class="user-btns">
         <div class="user-btns-title">个人信息</div>
         <div class="user-btn" [routerLink]="['/tabs/user/info']">
-            <img src="../../../assets/img/head.png">
+            <img src="../../../assets/img/user-info.png">
             <div>个人信息</div>
         </div>
     </div>
@@ -25,47 +25,28 @@
         <div class="user-btns-title">车辆管理</div>
         <!-- [disabled]="userService.user.vins.length<=1" -->
         <div class="user-btn" (click)="openVinList()">
-            <img src="../../../assets/img/head.png">
+            <img src="../../../assets/img/user-veh-change.png">
             <div>切换车辆</div>
         </div>
         <div class="user-btn" [routerLink]="['/tabs/user/bind']">
-            <img src="../../../assets/img/head.png">
+            <img src="../../../assets/img/user-veh-bind.png">
             <div>绑定车辆</div>
         </div>
         <!-- [disabled]="userService.user.vin.id==null" -->
         <div class="user-btn" (click)="unBindVin()">
-            <img src="../../../assets/img/head.png">
+            <img src="../../../assets/img/user-veh-unbind.png">
             <div>解绑车辆</div>
         </div>
     </div>
     <div class="user-btns">
         <div class="user-btns-title">系统功能</div>
         <div class="user-btn" [routerLink]="['/tabs/user/setting']">
-            <img src="../../../assets/img/head.png">
+            <img src="../../../assets/img/user-setting.png">
             <div>设置</div>
         </div>
         <div class="user-btn" (click)="logout()">
-            <img src="../../../assets/img/head.png">
+            <img src="../../../assets/img/user-logout.png">
             <div>退出登陆</div>
         </div>
     </div>
 </ion-content>
-
-<!-- <ion-col size="12">
-        <ion-button expand="block" color="primary" [routerLink]="['/tabs/user/info']">个人信息完善</ion-button>
-    </ion-col>
-    <ion-col size="12">
-        <ion-button expand="block" color="primary" (click)="openVinList()" [disabled]="userService.user.vins.length<=1">切换绑定车辆</ion-button>
-    </ion-col>
-    <ion-col size="12">
-        <ion-button expand="block" color="primary" [routerLink]="['/tabs/user/bind']">绑定车辆</ion-button>
-    </ion-col>
-    <ion-col size="12">
-        <ion-button expand="block" color="primary" (click)="unBindVin()" [disabled]="userService.user.vin.id==null">解绑当前车辆</ion-button>
-    </ion-col>
-    <ion-col size="12">
-        <ion-button expand="block" color="primary" [routerLink]="['/tabs/user/setting']">设置</ion-button>
-    </ion-col>
-    <ion-col size="12">
-        <ion-button expand="block" color="danger" (click)="logout()">退出登录</ion-button>
-    </ion-col> -->
