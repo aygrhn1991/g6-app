@@ -23,7 +23,7 @@ export class LocationPage implements OnInit {
     progress: 0,
   }
   locationType = LocationType;
-  locationSelected = LocationType.location;
+  locationSelected = LocationType.track;
   searchModel: SearchModel = new SearchModel();
   map: any;
   lushu: any;
@@ -40,7 +40,7 @@ export class LocationPage implements OnInit {
     private chartService: ChartService) { }
 
   ngOnInit() {
-    this.search1();
+    //this.search1();
   }
 
   search1() {

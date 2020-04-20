@@ -5,7 +5,7 @@
     "homepage": "https://ionicframework.com/",
     "scripts": {
         "ng": "ng",
-        "start": "ng serve --open --port 4210",
+        "start": "ng serve --open --port 4210 --proxy-config proxy.config.json",
         "build": "ng build",
         "test": "ng test",
         "lint": "ng lint",

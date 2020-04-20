@@ -51,8 +51,8 @@ const routes: Routes = [
     FileTransfer,
     File,
     //{ provide: 'API_URL', useValue: 'http://www.fenglingtime.com/appserver' },
-    //{ provide: 'API_URL', useValue: 'http://localhost:8080/appserver' },
-    { provide: 'API_URL', useValue: 'http://192.168.40.153:57695/appserver' },
+    { provide: 'API_URL', useValue: 'http://localhost:8080/appserver' },
+    //{ provide: 'API_URL', useValue: 'http://192.168.40.153:57695/appserver' },
     //{ provide: 'API_URL', useValue: 'http://222.32.56.11:57695/appserver' },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }

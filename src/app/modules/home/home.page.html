@@ -26,24 +26,55 @@
                         <div>VIN号码：{{veh.info.vin}}</div>
                         <div>车牌号码：{{veh.info.vehno}}</div>
                         <div>车牌颜色：{{veh.info.color}}</div>
+                        <div>车牌颜色：</div>
                         <div>车身颜色：{{veh.info.bodycolor}}</div>
                         <div>终端编号：{{veh.info.dtucode}}</div>
                         <div>SIM卡号：{{veh.info.simcode}}</div>
                         <div>发动机编号：{{veh.info.engcode}}</div>
                         <div>车辆型号：{{veh.info.vehmodel}}</div>
+                        <div>出厂时间：</div>
+                        <div>注册时间：</div>
+                        <div>终端版本号：</div>
+                        <div>通讯ID：</div>
+                        <div>基准扭矩：</div>
+                        <!-- <div class="home-modal-title">基本信息</div>
+                        <div>VIN号码：LFNAHULH0K1E39861{{veh.info.vin}}</div>
+                        <div>车牌号码：{{veh.info.vehno}}</div>
+                        <div>车牌颜色：{{veh.info.color}}</div>
+                        <div>车牌颜色：黄色</div>
+                        <div>车身颜色：红{{veh.info.bodycolor}}</div>
+                        <div>终端编号：725631{{veh.info.dtucode}}</div>
+                        <div>SIM卡号：460091001797293{{veh.info.simcode}}</div>
+                        <div>发动机编号：0975448{{veh.info.engcode}}</div>
+                        <div>车辆型号：C10HB{{veh.info.vehmodel}}</div>
+                        <div>出厂时间：2019-05-17</div>
+                        <div>注册时间：2019-05-22</div>
+                        <div>终端版本号：100119</div>
+                        <div>通讯ID：06923</div>
+                        <div>基准扭矩：1800</div> -->
                     </div>
                     <div class="home-modal home-modal2" *ngIf="modalSelected==modalType.mode">
                         <div class="home-modal-title">工况数据</div>
                         <div>油箱液位：{{veh.condition.fuel}}</div>
                         <div>反应剂余量：{{veh.condition.reactant}}</div>
+                        <div>电池电量：{{veh.condition.fuel}}</div>
+                        <div>进气量：{{veh.condition.reactant}}</div>
+                        <div>油箱液位：{{veh.condition.fuel}}</div>
+                        <div>反应剂余量：{{veh.condition.reactant}}</div>
                     </div>
                     <div class="home-modal home-modal3" *ngIf="modalSelected==modalType.statistic">
-                        <div class="home-modal-title">车辆数据汇总</div>
+                        <div class="home-modal-title">车辆历史数据</div>
                         <div class="home-modal-item-more" [routerLink]="['/tabs/home/custom',customType.days]">车辆上线天数：{{veh.statistic.days}}天</div>
                         <div class="home-modal-item-more" [routerLink]="['/tabs/home/custom',customType.mile]">车辆行驶总里程：{{veh.statistic.mile}}km</div>
                         <div class="home-modal-item-more" [routerLink]="['/tabs/home/custom',customType.oil]">总油耗：{{veh.statistic.oil}}L</div>
                         <div class="home-modal-item-more" [routerLink]="['/tabs/home/custom',customType.nox]">总NOx排放量：{{veh.statistic.nox}}L</div>
                         <div class="home-modal-item-more" [routerLink]="['/tabs/home/custom',customType.faults]">总故障数：{{veh.statistic.faults}}次</div>
+                        <div>发动机转速统计：{{veh.statistic.faults}}</div>
+                        <div>DPF压差统计：{{veh.statistic.faults}}</div>
+                        <div>冷却液温度统计：{{veh.statistic.faults}}</div>
+                        <div>反应剂消耗：{{veh.statistic.faults}}</div>
+                        <div>定位偏移：{{veh.statistic.faults}}</div>
+                        <div>历史异常数据：{{veh.statistic.faults}}</div>
                     </div>
                 </ion-col>
             </ion-row>

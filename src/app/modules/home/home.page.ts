@@ -38,11 +38,11 @@ export class HomePage implements OnInit {
         vehInfo.engcode = d.data.info.C_ENGCODE;
         this.veh.info = vehInfo;
         let vehStatistic = new VehStatistic();
-        vehStatistic.days = d.data.statistic.DAYS;
-        vehStatistic.mile = d.data.statistic.MILE;
-        vehStatistic.nox = d.data.statistic.NOX;
-        vehStatistic.oil = d.data.statistic.OIL;
-        vehStatistic.faults = d.data.statistic.FAULTS;
+        vehStatistic.days = d.data.statistic.days;
+        vehStatistic.mile = d.data.statistic.mile;
+        vehStatistic.nox = d.data.statistic.nox;
+        vehStatistic.oil = d.data.statistic.oil;
+        vehStatistic.faults = d.data.statistic.faults;
         this.veh.statistic = vehStatistic;
       }
     })
